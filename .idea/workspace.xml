@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ade8aae4-ead0-442d-9b5b-2ae6a9a2ce63" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\.name" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\artifacts\toDoListPractic_war.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\artifacts\toDoListPractic_war_exploded.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\compiler.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\encodings.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__antlr_antlr_2_7_7.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__commons_logging_commons_logging_1_2.xml" afterPath="" />
@@ -35,13 +32,8 @@
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__org_springframework_spring_webmvc_4_1_7_RELEASE.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__taglibs_standard_1_1_2.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\libraries\Maven__xml_apis_xml_apis_1_0_b2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\modules.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\star\Documents\GitHub\toDoList\toDoListPractic.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="toDoListPractic.iws" />
@@ -122,8 +114,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="584">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.05821918" vertical-offset="0" max-vertical-offset="584">
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -650,7 +642,7 @@
       <workItem from="1453151015475" duration="3332000" />
       <workItem from="1453155079786" duration="93000" />
       <workItem from="1453155329932" duration="727000" />
-      <workItem from="1453156263273" duration="695000" />
+      <workItem from="1453156263273" duration="760000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore config">
       <created>1453156458854</created>
@@ -664,11 +656,17 @@
       <option name="project" value="LOCAL" />
       <updated>1453156798021</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="delete idea&#10;">
+      <created>1453156973633</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1453156973633</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33520000" />
+    <option name="totallyTimeSpent" value="33585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -753,7 +751,8 @@
     </option>
     <MESSAGE value="gitignore config" />
     <MESSAGE value="delete target" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete target" />
+    <MESSAGE value="delete idea&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete idea&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1149,8 +1148,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="584">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.05821918" vertical-offset="0" max-vertical-offset="584">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
           <folding />
         </state>
       </provider>
