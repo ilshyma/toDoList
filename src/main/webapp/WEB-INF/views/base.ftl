@@ -118,9 +118,9 @@
                 <li class="nav-header">Hi user !</li>
                 <li><a href="/todos"><i class="icon-home"></i> Home</a></li>
                 <li><a href="/user/account"><i class="icon-user"></i> My account</a></li>
-                <li><a href="/todos/new"><i class="icon-file"></i> Create a todo</a></li>
+                <li><a href="/create"><i class="icon-file"></i> Create a task</a></li>
                 <li class="divider"></li>
-                <li class="nav-header">Search todo</li>
+                <li class="nav-header">Search task</li>
                 <li>
                     <form class="form-search" action="/todos/search" id="searchForm" method="get">
                         <div class="input-append">
