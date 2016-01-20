@@ -49,12 +49,12 @@ public class IndexController {
         }});
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    protected ModelAndView createProjectPageProcessor(@ModelAttribute final Task task) throws Exception {
+    @RequestMapping(value = "/tasks/create", method = RequestMethod.POST)
+    protected ModelAndView createTaskProcessor(@ModelAttribute final Task task) throws Exception {
         taskRepository.save(task);
-        return new ModelAndView("tasks", new HashMap<String, Object>() {{
-            put("project", taskRepository.getTaskById(task.getId()));
-            put("projects", taskRepository.getAllTasks());
+        return new ModelAndView("tasks/show", new HashMap<String, Object>() {{
+            put("task", taskRepository.getTaskById(task.getId()));
+            put("tasks", taskRepository.getAllTasks());
         }});
     }
 }
