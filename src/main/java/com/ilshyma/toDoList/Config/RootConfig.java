@@ -12,7 +12,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan({
         "com.ilshyma.toDoList.Config",
         "com.ilshyma.toDoList.Controllers",
-        "com.ilshyma.toDoList.Model"
+        "com.ilshyma.toDoList.Model",
+        "com.ilshyma.toDoList.repository",
+        "com.ilshyma.toDoList.Service"
+
 })
 
 public class RootConfig {

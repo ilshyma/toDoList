@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title><@layout.block name="title">Projects Home</@layout.block></title>
+    <title><@layout.block name="title">ToDoList</@layout.block></title>
 
     <script type="text/javascript">
         var $applicationRoot = "<@s.url value="/" />";
@@ -67,16 +67,22 @@
 </head>
 
 <body>
-<@layout.block name="body">
 
-<!--top menu-->
+
+
+<!---------------------------------->
+<!-----------top Menu--------------->
+<!---------------------------------->
+
+<@layout.block name="topMenu">
+
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/index">Todolist MVC</a>
+            <a class="brand" href="/">Todolist MVC</a>
             <ul class="nav">
-                <li class="active"><a href="/todos">Home</a></li>
-                <li class=""><a href="/about">About</a></li>
+                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/show">ToDo List</a></li>
+                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="/create">Other</a></li>
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -91,14 +97,22 @@
         </div>
     </div>
 </div>
+</@layout.block>
 
-<!--page content-->
+<!---------------------------------->
+<!-----------Work page content------>
+<!---------------------------------->
+
 <div class="container">
 <div class="row">
+
+    <!---------------------------------->
+    <!-----------sideMenu--------------->
+    <!---------------------------------->
+
+    <@layout.block name="sideMenu">
+
     <div class="span3">
-
-        <!--side menu-->
-
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Hi user !</li>
@@ -118,37 +132,26 @@
                 </li>
             </ul>
         </div>
-
-        <!-- end side menu-->
-
     </div>
-    <div class="span9">
-        <div class="well">
-            <div class="page-header">
-                <h1>My Todo list</h1>
+
+</@layout.block>
+
+    <!---------------------------------->
+    <!-----------Content---------------->
+    <!---------------------------------->
+
+    <@layout.block name="contentTask">
+
+        <div class="span9">
+            <div class="well">
+                <div class="page-header">
+                    <h1>What u want?</h1>
+                </div>
+
+
+
             </div>
-
-            <table class="table table-bordered table-striped">
-
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Due Date</th>
-                    <th>Priority</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                </tbody>
-            </table>
         </div>
-    </div>
-
-    </div>
-    </div>
 
 
 

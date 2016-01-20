@@ -7,6 +7,12 @@ import java.util.Date;
 /**
  * Created by star on 18.01.2016.
  */
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllTasks", query = "SELECT t FROM Task t order by t.dueDate"),
+        @NamedQuery(name = "findTaskByUser", query = "SELECT t FROM Task t where t.userId = ?1 order by t.dueDate"),
+        @NamedQuery(name = "findTaskByTitle", query = "SELECT t FROM Task t where t.userId = ?1 and upper(t.title) like ?2 order by t.dueDate")
+})
 public class Task implements Serializable {
 
     @Id
@@ -30,15 +36,15 @@ public class Task implements Serializable {
         priority = Priority.LOW;
     }
 
-    public Task(long userId, String title, boolean done, Priority priority, Date dueDate) {
-        this.userId = userId;
+    public Task( String title, boolean done, Priority priority, Date dueDate) {
+
         this.title = title;
         this.done = done;
         this.priority = priority;
         this.dueDate = dueDate;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -52,29 +58,35 @@ public class Task implements Serializable {
     public String getTitle() {
         return title;
     }
-    public void setTitle(String title) {
+    public Task setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public boolean isDone() {
         return done;
     }
-    public void setDone(boolean done) {
+
+    public Task setDone(boolean done) {
         this.done = done;
+        return this;
+
     }
 
     public Priority getPriority() {
         return priority;
     }
-    public void setPriority(Priority priority) {
+    public Task setPriority(Priority priority) {
         this.priority = priority;
+        return this;
     }
 
     public Date getDueDate() {
         return dueDate;
     }
-    public void setDueDate(Date dueDate) {
+    public Task setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+        return this;
     }
 
     @Override
