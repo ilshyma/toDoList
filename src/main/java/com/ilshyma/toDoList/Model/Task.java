@@ -10,8 +10,8 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getAllTasks", query = "SELECT t FROM Task t order by t.dueDate"),
-        @NamedQuery(name = "findTaskByUser", query = "SELECT t FROM Task t where t.userId = ?1 order by t.dueDate"),
-        @NamedQuery(name = "findTaskByTitle", query = "SELECT t FROM Task t where t.userId = ?1 and upper(t.title) like ?2 order by t.dueDate")
+        @NamedQuery(name = "getTaskByUser", query = "SELECT t FROM Task t where t.userId = ?1 order by t.dueDate"),
+        @NamedQuery(name = "getTaskByTitle", query = "SELECT t FROM Task t where upper(t.title) like ?1 order by t.dueDate")
 })
 public class Task implements Serializable {
 

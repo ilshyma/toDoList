@@ -29,32 +29,11 @@ public class IndexController {
         return model;
     }
 
-    @RequestMapping(value = {"/show"})
-    protected ModelAndView show (Principal principal) throws Exception {
-        ModelAndView model = new ModelAndView("tasks/show");
-        model.addObject("tasks", taskRepository.getAllTasks());
-        return model;
-    }
-
     @RequestMapping(value = {"/index"})
     protected ModelAndView index2(Principal principal) throws Exception {
         ModelAndView model = new ModelAndView("index");
         return model;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    protected ModelAndView createTaskPage() throws Exception {
-        return new ModelAndView("tasks/create", new HashMap<String, Object>() {{
-            put("tasks", taskRepository.getAllTasks());
-        }});
-    }
 
-    @RequestMapping(value = "/tasks/create", method = RequestMethod.POST)
-    protected ModelAndView createTaskProcessor(@ModelAttribute final Task task) throws Exception {
-        taskRepository.save(task);
-        return new ModelAndView("tasks/show", new HashMap<String, Object>() {{
-            put("task", taskRepository.getTaskById(task.getId()));
-            put("tasks", taskRepository.getAllTasks());
-        }});
-    }
 }

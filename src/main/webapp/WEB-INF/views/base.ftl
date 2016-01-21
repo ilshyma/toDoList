@@ -81,8 +81,8 @@
         <div class="container">
             <a class="brand" href="/">Todolist MVC</a>
             <ul class="nav">
-                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/show">ToDo List</a></li>
-                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="/create">Other</a></li>
+                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/tasks/show">ToDo List</a></li>
+                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="/tasks/create">Other</a></li>
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -116,13 +116,13 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Hi user !</li>
-                <li><a href="/todos"><i class="icon-home"></i> Home</a></li>
+                <li><a href="/tasks/show"><i class="icon-home"></i> Home</a></li>
                 <li><a href="/user/account"><i class="icon-user"></i> My account</a></li>
-                <li><a href="/create"><i class="icon-file"></i> Create a task</a></li>
+                <li><a href="/tasks/create"><i class="icon-file"></i> Create a task</a></li>
                 <li class="divider"></li>
                 <li class="nav-header">Search task</li>
                 <li>
-                    <form class="form-search" action="/todos/search" id="searchForm" method="get">
+                    <form class="form-search" action="/tasks/search" id="searchForm" method="post">
                         <div class="input-append">
                             <input type="text" name="title" class="input-small search-query"
                                    placeholder="search by title" required="required">
