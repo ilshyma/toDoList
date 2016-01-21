@@ -81,8 +81,8 @@
         <div class="container">
             <a class="brand" href="/">Todolist MVC</a>
             <ul class="nav">
-                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/show">ToDo List</a></li>
-                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="/create">Other</a></li>
+                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/">All</a></li>
+                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="tasks/create">Add</a></li>
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -118,9 +118,9 @@
                 <li class="nav-header">Hi user !</li>
                 <li><a href="/todos"><i class="icon-home"></i> Home</a></li>
                 <li><a href="/user/account"><i class="icon-user"></i> My account</a></li>
-                <li><a href="/create"><i class="icon-file"></i> Create a task</a></li>
+                <li><a href="/todos/new"><i class="icon-file"></i> Create a todo</a></li>
                 <li class="divider"></li>
-                <li class="nav-header">Search task</li>
+                <li class="nav-header">Search todo</li>
                 <li>
                     <form class="form-search" action="/todos/search" id="searchForm" method="get">
                         <div class="input-append">
