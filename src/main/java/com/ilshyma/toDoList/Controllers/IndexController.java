@@ -23,14 +23,6 @@ public class IndexController {
     @Autowired
     TaskRepository taskRepository;
 
-   /* @RequestMapping(value = {"/project/all"})
-    protected ModelAndView indexPage() throws Exception {
-        ModelAndView model = new ModelAndView("project/all");
-        model.addObject("user", userRepository.getUser(userSession.getUserId()));
-        model.addObject("projects", projectRepository.getAllProjects());
-        return model;
-    }
-*/
     @RequestMapping(value = {"/"})
     protected ModelAndView index(Principal principal) throws Exception {
         ModelAndView model = new ModelAndView("base");
@@ -57,10 +49,10 @@ public class IndexController {
         }});
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    protected ModelAndView createProjectPageProcessor(@ModelAttribute final Task task) throws Exception {
+    @RequestMapping(value = "/tasks/create", method = RequestMethod.POST)
+    protected ModelAndView createTaskProcessor(@ModelAttribute final Task task) throws Exception {
         taskRepository.save(task);
-        return new ModelAndView("tasks", new HashMap<String, Object>() {{
+        return new ModelAndView("tasks/show", new HashMap<String, Object>() {{
             put("task", taskRepository.getTaskById(task.getId()));
             put("tasks", taskRepository.getAllTasks());
         }});
