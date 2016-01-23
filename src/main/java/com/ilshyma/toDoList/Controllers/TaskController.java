@@ -30,8 +30,8 @@ public class TaskController {
 
 //----------Show page----------------
 
-    @RequestMapping(value = "tasks/show", method = RequestMethod.GET)
-    protected ModelAndView show () throws Exception {
+    @RequestMapping(value = "/tasks/show", method = RequestMethod.GET)
+    protected ModelAndView show() throws Exception {
         ModelAndView model = new ModelAndView("tasks/show");
         LOGGER.info(taskRepository.getAllTasks());
         model.addObject("tasks", taskRepository.getAllTasks());
@@ -43,7 +43,7 @@ public class TaskController {
 
     @RequestMapping(value = "/task/{taskId}/edit", method = RequestMethod.GET)
     protected ModelAndView editTaskProcessor(@PathVariable final long taskId) throws Exception {
-            LOGGER.info( "Edit taskId: \"" + taskId + "\"");
+        LOGGER.info("Edit taskId: \"" + taskId + "\"");
         return new ModelAndView("/tasks/edit", new HashMap<String, Object>() {{
             put("task", taskRepository.getTaskById(taskId));
         }});
@@ -51,29 +51,32 @@ public class TaskController {
 
 
     @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
-    protected ModelAndView editProjectPageProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
-        LOGGER.info( "edit: \"" + taskIdEdit + "\"");
-        LOGGER.info( "taskDTO: \"" + taskDTO + "\"");
+    protected ModelAndView editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
         Task task = taskRepository.getTaskById(taskIdEdit);
-            LOGGER.info( "task from taskIdEdit : " + taskRepository.getTaskById(taskIdEdit));
         task.setTitle(taskDTO.getTitle());
-            LOGGER.info( "new task from taskIdEdit : " + task);
-
         taskRepository.save(task);
-
         return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
+            put("tasks", taskRepository.getAllTasks());
+        }});
+    }
 
-           // put("task", taskRepository.getTaskById(taskIdEdit));
+    //-----------Delete task------------
+
+    @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
+    protected ModelAndView editProjectPageProcessor(@PathVariable final long taskIdDelete) throws Exception {
+        LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
+        taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
+        return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());
         }});
     }
 
     //----------Search page----------------
- @RequestMapping(value = "/tasks/search", method = RequestMethod.POST)
-    protected ModelAndView searchResultPage(@ModelAttribute ("title") final String title) throws Exception {
-            LOGGER.info( "Search word: \"" + title + "\"");
+    @RequestMapping(value = "/tasks/search", method = RequestMethod.POST)
+    protected ModelAndView searchResultPage(@ModelAttribute("title") final String title) throws Exception {
+        LOGGER.info("Search word: \"" + title + "\"");
         taskRepository.getTaskByTitle(title);
-             LOGGER.info( "Search results: \"" + taskRepository.getTaskByTitle(title) + "\"");
+        LOGGER.info("Search results: \"" + taskRepository.getTaskByTitle(title) + "\"");
         return new ModelAndView("/tasks/search", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getTaskByTitle(title));
             put("searchTitle", title);
