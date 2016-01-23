@@ -36,8 +36,8 @@
                         <td>${currentTask.priority}</td>
                         <td>${currentTask.done?c}</td>
                         <td>
-                            <a class="btn btn-mini btn-primary" <i class="icon-edit icon-white"></i> Edit</a>
-                            <a class="btn btn-mini btn-danger"  <i class="icon-remove icon-white"></i> Delete</a>
+                            <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i class="icon-edit icon-white"></i> Edit</a>
+                            <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete_${currentTask.id}"><i class="icon-remove icon-white"></i> Delete</a>
 
 
                         </td>

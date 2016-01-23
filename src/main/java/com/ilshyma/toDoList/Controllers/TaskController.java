@@ -2,15 +2,17 @@ package com.ilshyma.toDoList.Controllers;
 
 
 import com.ilshyma.toDoList.Model.Task;
+import com.ilshyma.toDoList.Model.web.TaskDTO;
 import com.ilshyma.toDoList.repository.TaskRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
 import java.util.HashMap;
 
 /**
@@ -20,35 +22,69 @@ import java.util.HashMap;
 
 public class TaskController {
 
+    private static final Logger LOGGER = Logger.getLogger(TaskController.class);
+
     @Autowired
     TaskRepository taskRepository;
 
+
+//----------Show page----------------
+
     @RequestMapping(value = "tasks/show", method = RequestMethod.GET)
-    protected ModelAndView show (Principal principal) throws Exception {
+    protected ModelAndView show () throws Exception {
         ModelAndView model = new ModelAndView("tasks/show");
+        LOGGER.info(taskRepository.getAllTasks());
         model.addObject("tasks", taskRepository.getAllTasks());
         return model;
     }
 
-    @RequestMapping(value = "tasks/search", method = RequestMethod.GET)
-    protected ModelAndView search (Principal principal) throws Exception {
-        ModelAndView model = new ModelAndView("tasks/search");
-        model.addObject("tasks", taskRepository.getAllTasks());
-        return model;
-    }
 
-    @RequestMapping(value = "/tasks/search", method = RequestMethod.POST)
-    protected ModelAndView searchResultPage(@ModelAttribute final String title) throws Exception {
-        taskRepository.getTaskListByTitle(title);
-        return new ModelAndView("tasks/search", new HashMap<String, Object>() {{
-            put("task", taskRepository.getTaskListByTitle(title));
+    //----------Edit page----------------
+
+    @RequestMapping(value = "/task/{taskId}/edit", method = RequestMethod.GET)
+    protected ModelAndView editTaskProcessor(@PathVariable final long taskId) throws Exception {
+            LOGGER.info( "Edit taskId: \"" + taskId + "\"");
+        return new ModelAndView("/tasks/edit", new HashMap<String, Object>() {{
+            put("task", taskRepository.getTaskById(taskId));
         }});
     }
 
 
+    @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
+    protected ModelAndView editProjectPageProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
+        LOGGER.info( "edit: \"" + taskIdEdit + "\"");
+        LOGGER.info( "taskDTO: \"" + taskDTO + "\"");
+        Task task = taskRepository.getTaskById(taskIdEdit);
+            LOGGER.info( "task from taskIdEdit : " + taskRepository.getTaskById(taskIdEdit));
+        task.setTitle(taskDTO.getTitle());
+            LOGGER.info( "new task from taskIdEdit : " + task);
+
+        taskRepository.save(task);
+
+        return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
+
+           // put("task", taskRepository.getTaskById(taskIdEdit));
+            put("tasks", taskRepository.getAllTasks());
+        }});
+    }
+
+    //----------Search page----------------
+ @RequestMapping(value = "/tasks/search", method = RequestMethod.POST)
+    protected ModelAndView searchResultPage(@ModelAttribute ("title") final String title) throws Exception {
+            LOGGER.info( "Search word: \"" + title + "\"");
+        taskRepository.getTaskByTitle(title);
+             LOGGER.info( "Search results: \"" + taskRepository.getTaskByTitle(title) + "\"");
+        return new ModelAndView("/tasks/search", new HashMap<String, Object>() {{
+            put("tasks", taskRepository.getTaskByTitle(title));
+            put("searchTitle", title);
+        }});
+    }
+
+//--------------Create page-----------------
+
     @RequestMapping(value = "/tasks/create", method = RequestMethod.GET)
     protected ModelAndView createTaskPage() throws Exception {
-        return new ModelAndView("tasks/create", new HashMap<String, Object>() {{
+        return new ModelAndView("/tasks/create", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());
         }});
     }

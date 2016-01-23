@@ -30,7 +30,7 @@ public class TaskService {
     public List<Task> getTasksListByUser(final long userId) {return taskRepository.getTaskListByUser(userId); }
 
     public List<Task> getTaskByTitle(final String title) {
-        return taskRepository.getTaskListByTitle(title);
+        return taskRepository.getTaskByTitle(title);
     }
 
 

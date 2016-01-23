@@ -122,7 +122,7 @@
                 <li class="divider"></li>
                 <li class="nav-header">Search task</li>
                 <li>
-                    <form class="form-search" action="/tasks/search" id="searchForm" method="post">
+                    <form role="form" id="searchForm"  class="form-search"  action="<@c.url value='/tasks/search' />" method="POST">
                         <div class="input-append">
                             <input type="text" name="title" class="input-small search-query"
                                    placeholder="search by title" required="required">

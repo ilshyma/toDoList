@@ -11,7 +11,7 @@
     <div class="span9">
         <div class="well">
             <div class="page-header">
-                <h1>Search results</h1>
+                <h1>Search results for title: ${searchTitle}</h1>
             </div>
 
             <table class="table table-bordered table-striped">
@@ -29,19 +29,21 @@
 
                 <tbody>
 
+                    <#list tasks as currentTask>
                     <tr>
-                        <td>${task.id}</td>
-                        <td>${task.title}</td>
-                        <td>${task.dueDate}</td>
-                        <td>${task.priority}</td>
-                        <td>${task.done?c}</td>
+                        <td>${currentTask.id}</td>
+                        <td>${currentTask.title}</td>
+                        <td>${currentTask.dueDate}</td>
+                        <td>${currentTask.priority}</td>
+                        <td>${currentTask.done?c}</td>
                         <td>
                             <a class="btn btn-mini btn-primary" <i class="icon-edit icon-white"></i> Edit</a>
                             <a class="btn btn-mini btn-danger"  <i class="icon-remove icon-white"></i> Delete</a>
 
+
                         </td>
                     </tr>
-
+                    </#list>
 
                 </tbody>
             </table>

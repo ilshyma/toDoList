@@ -37,7 +37,7 @@ public class TaskRepository {
         return query.getResultList();
     }
 
-    public List<Task> getTaskListByTitle( final String title) {
+    public List<Task> getTaskByTitle( final String title) {
         TypedQuery<Task> query = entityManager.createNamedQuery("getTaskByTitle", Task.class);
         query.setParameter(1, "%" + title.toUpperCase() + "%");
         return query.getResultList();
@@ -64,4 +64,6 @@ public class TaskRepository {
         Task t = entityManager.find(Task.class, task.getId());
         entityManager.remove(t);
     }
+
+
 }
