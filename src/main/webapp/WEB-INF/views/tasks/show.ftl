@@ -37,15 +37,15 @@
                         <td>${currentTask.done?c}</td>
                         <td>
                             <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i class="icon-edit icon-white"></i> Edit</a>
-                            <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete"><i class="icon-remove icon-white"></i> Delete</a>
+                            <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete_${currentTask.id}"><i class="icon-remove icon-white"></i> Delete</a>
 
-                            <div class="modal hide" id="confirm_delete">
+                            <div class="modal hide" id="confirm_delete_${currentTask.id}">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
                                     <h3>Confirmation</h3>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Are you sure to delete todo '${currentTask.title}' ?</p>
+                                    <p>Are you sure to delete todo ${currentTask.id} '${currentTask.title}' ?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="/task/${currentTask.id}/delete" method="post">

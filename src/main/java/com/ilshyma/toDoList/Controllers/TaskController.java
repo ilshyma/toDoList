@@ -63,7 +63,7 @@ public class TaskController {
     //-----------Delete task------------
 
     @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
-    protected ModelAndView editProjectPageProcessor(@PathVariable final long taskIdDelete) throws Exception {
+    protected ModelAndView deleteTask (@PathVariable final long taskIdDelete) throws Exception {
         LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
         taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
         return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
