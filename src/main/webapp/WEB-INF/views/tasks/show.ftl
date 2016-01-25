@@ -28,16 +28,25 @@
                 </thead>
 
                 <tbody>
-                <#list tasks as currentTask>
+                    <#list tasks as currentTask>
                     <tr>
                         <td>${currentTask.id}</td>
                         <td>${currentTask.title}</td>
                         <td>${currentTask.dueDate}</td>
-                        <td>${currentTask.priority}</td>
-                        <td>${currentTask.done?c}</td>
+                        <#if currentTask.priority??><td>${currentTask.priority}</td><#else><td>null</td></#if>
+
                         <td>
-                            <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i class="icon-edit icon-white"></i> Edit</a>
-                            <a class="btn btn-mini btn-danger" data-toggle="modal" href="#confirm_delete_${currentTask.id}"><i class="icon-remove icon-white"></i> Delete</a>
+                            <#if currentTask.status =="DONE">
+                            <span class="label label-success">
+                            <#else>
+                            <span class="label label label-default">
+                            </#if>
+                        ${currentTask.status}</span></td>
+                        <td>
+                            <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i
+                                    class="icon-pencil icon-white"></i></a>
+                            <a class="btn btn-mini btn-danger" data-toggle="modal"
+                               href="#confirm_delete_${currentTask.id}"><i class="icon-remove icon-white"></i></a>
 
                             <div class="modal hide" id="confirm_delete_${currentTask.id}">
                                 <div class="modal-header">
@@ -67,5 +76,5 @@
 
 
 
-</@layout.put>
+    </@layout.put>
 </@layout.extends>

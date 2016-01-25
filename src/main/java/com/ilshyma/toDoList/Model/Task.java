@@ -24,22 +24,24 @@ public class Task implements Serializable {
     @Column(length = 512)
     private String title;
 
-    private boolean done;
-
     @Enumerated(value = EnumType.ORDINAL)
     private Priority priority;
+
+    @Enumerated(value = EnumType.ORDINAL)
+    private Status status;
 
     @Temporal(TemporalType.DATE)
     private Date dueDate;
 
     public Task() {
         priority = Priority.LOW;
+        status = Status.IN_PROGRESS;
     }
 
-    public Task( String title, boolean done, Priority priority, Date dueDate) {
+    public Task( String title, Status status, Priority priority, Date dueDate) {
 
         this.title = title;
-        this.done = done;
+        this.status = status;
         this.priority = priority;
         this.dueDate = dueDate;
     }
@@ -63,12 +65,12 @@ public class Task implements Serializable {
         return this;
     }
 
-    public boolean isDone() {
-        return done;
+    public Status getStatus() {
+        return status;
     }
 
-    public Task setDone(boolean done) {
-        this.done = done;
+    public Task setStatus( Status status ) {
+        this.status = status;
         return this;
 
     }
@@ -95,7 +97,7 @@ public class Task implements Serializable {
         sb.append("id=").append(id);
         sb.append(", userId=").append(userId);
         sb.append(", title='").append(title).append('\'');
-        sb.append(", done=").append(done);
+        sb.append(", done=").append(status);
         sb.append(", priority=").append(priority);
         sb.append(", dueDate=").append(dueDate);
         sb.append('}');

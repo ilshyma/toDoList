@@ -54,6 +54,8 @@ public class TaskController {
     protected ModelAndView editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
         Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
+        task.setPriority(taskDTO.getPriority());
+        LOGGER.info("new taskId priority: \"" + taskDTO.getPriority() + "\"");
         taskRepository.save(task);
         return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());

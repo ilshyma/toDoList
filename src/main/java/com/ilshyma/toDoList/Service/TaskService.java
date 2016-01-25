@@ -1,6 +1,7 @@
 package com.ilshyma.toDoList.Service;
 
 import com.ilshyma.toDoList.Model.Priority;
+import com.ilshyma.toDoList.Model.Status;
 import com.ilshyma.toDoList.Model.Task;
 import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
@@ -19,6 +20,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class TaskService {
 
+
     @Autowired
     private TaskRepository taskRepository;
     private UserRepository userRepository;
@@ -27,7 +29,9 @@ public class TaskService {
         return taskRepository.getTaskById(id);
     }
 
-    public List<Task> getTasksListByUser(final long userId) {return taskRepository.getTaskListByUser(userId); }
+    public List<Task> getTasksListByUser(final long userId) {
+        return taskRepository.getTaskListByUser(userId);
+    }
 
     public List<Task> getTaskByTitle(final String title) {
         return taskRepository.getTaskByTitle(title);
@@ -52,28 +56,36 @@ public class TaskService {
     @PostConstruct
     protected void initialize() {
 
-            taskRepository.create(
+        taskRepository.create(
                 new Task()
-                    .setTitle("Task1")
-                    .setDone(true)
-                    .setPriority(Priority.LOW)
-                    .setDueDate(new Date())
-                );
+                        .setTitle("Create Sessions system")
+                        .setStatus(Status.DONE)
+                        .setPriority(Priority.LOW)
+                        .setDueDate(new Date())
+        );
 
-            taskRepository.create(
-                    new Task()
-                        .setTitle("Task2")
-                        .setDone(false)
+        taskRepository.create(
+                new Task()
+                        .setTitle("Modify Create Page")
+                        .setStatus(Status.IN_PROGRESS)
                         .setPriority(Priority.HIGH)
                         .setDueDate(new Date())
-                    );
-            taskRepository.create(
-                    new Task()
-                        .setTitle("Task3")
-                        .setDone(true)
+        );
+        taskRepository.create(
+                new Task()
+                        .setTitle("Create print page")
+                        .setStatus(Status.IN_PROGRESS)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
-                    );
+        );
+        taskRepository.create(
+                new Task()
+                        .setTitle("Create new button \"Create\"")
+                        .setStatus(Status.IN_PROGRESS)
+                        .setPriority(Priority.MEDIUM)
+                        .setDueDate(new Date())
+        );
+
 
     }
 }

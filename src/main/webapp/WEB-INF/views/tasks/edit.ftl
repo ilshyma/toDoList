@@ -16,22 +16,43 @@
             </div>
 
             <div class="row">
-                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />" method="POST">
+                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />"
+                      method="POST">
 
                     <div class="control-group">
                         <label class="control-label" for="title">Title:</label>
 
                         <div class="controls">
-                            <input type="text" id="title" name="title" value="${task.title}" required="required" autofocus="autofocus"/>
+                            <input type="text" id="title" name="title" value="${task.title}" required="required"
+                                   autofocus="autofocus"/>
                         </div>
                     </div>
 
+                    <div class="control-group">
+                        <label class="control-label" for="priority">Priority:</label>
 
+                        <div class="controls">
+                            <div class="input-group-btn" data-toggle="buttons-radio" id="priority" name="priority" >
+                                <input  type="button"  value="LOW" class="btn btn-default">Low
+                                <input  type="button"  value="MEDIUM" class="btn btn-default">Medium
+                                <input  type="button"  value="HIGH" class="btn btn-default">High
+                            </div>
+                            <!--
+                                                    <div class="controls">
+                                                        <input type="radio"  id="priority" name="priority" value="LOW"> Low<Br>
+                                                        <input type="radio"  id="priority" name="priority" value="MEDIUM"> Medium<Br>
+                                                        <input type="radio"  id="priority" name="priority" value="HIGH"> High<Br>
+                                                    </div>
+                                                    -->
+                        </div>
+
+                    </div>
 
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
-                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i> Cancel</button>
+                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i> Cancel
+                        </button>
                     </div>
 
                 </form>
