@@ -20,19 +20,9 @@
 
 <@layout.block name="css_head">
     <!-- Bootstrap Styles-->
-    <link href="<@c.url value="/resources/css/lib/bootstrap.css" />" rel="stylesheet"/>
     <link href="<@c.url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"/>
-
-    <!-- FontAwesome Styles-->
-    <link href="<@c.url value="/resources/css/lib/font-awesome.css" />" rel="stylesheet"/>
-    <!-- Morris Chart Styles-->
-    <link href="<@c.url value="/resources/css/lib/morris-0.4.3.min.css" />" rel="stylesheet"/>
-    <!-- Custom Styles-->
-    <link href="<@c.url value="/resources/css/lib/custom-styles.css" />" rel="stylesheet"/>
-    <!-- Google Fonts-->
+    <link href="<@c.url value="/resources/css/datepicker.css" />" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-
-    <link href="<@c.url value="/resources/css/main.css" />" rel="stylesheet" type="text/css"/>
 
     <style type="text/css">
         body {
@@ -48,20 +38,10 @@
     <script type="text/javascript" src="<@c.url value="/resources/js/lib/jquery-1.10.2.js" />"></script>
     <!-- Bootstrap Js -->
     <script type="text/javascript" src="<@c.url value="/resources/js/lib/bootstrap.min.js" />"></script>
-    <!-- Metis Menu Js -->
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/jquery.metisMenu.js" />"></script>
-    <!-- Morris Chart Js -->
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/morris/raphael-2.1.0.min.js" />"></script>
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/morris/morris.js" />"></script>
-
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/easypiechart.js" />"></script>
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/easypiechart-data.js" />"></script>
+    <!-- Bootstrap datepicker Js -->
+    <script type="text/javascript" src="<@c.url value="/resources/js/lib/bootstrap-datepicker.js" />"></script>
 
 
-    <!-- Custom Js -->
-    <script type="text/javascript" src="<@c.url value="/resources/js/lib/custom-scripts.js" />"></script>
-    <script type="text/javascript" src="<@c.url value="/resources/js/spin.js" />"></script>
-    <script type="text/javascript" src="<@c.url value="/resources/js/app.js" />"></script>
 
 </@layout.block>
 </head>
@@ -82,7 +62,6 @@
             <a class="brand" href="/">Todolist MVC</a>
             <ul class="nav">
                 <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/tasks/show">ToDo List</a></li>
-                <li <@layout.block name="topmenu.task.create.active"></@layout.block> ><a href="/tasks/create">Other</a></li>
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -116,9 +95,6 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Hi user !</li>
-                <li><a href="/tasks/show"><i class="icon-home"></i> Home</a></li>
-                <li><a href="/user/account"><i class="icon-user"></i> My account</a></li>
-                <li><a href="/tasks/create"><i class="icon-file"></i> Create a task</a></li>
                 <li class="divider"></li>
                 <li class="nav-header">Search task</li>
                 <li>

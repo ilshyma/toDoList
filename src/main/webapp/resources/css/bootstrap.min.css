@@ -119,6 +119,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 
 label, select, button, input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {
     cursor: pointer
+
 }
 
 input[type="search"] {

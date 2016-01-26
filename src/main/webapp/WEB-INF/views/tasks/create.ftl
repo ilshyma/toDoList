@@ -18,31 +18,44 @@
             <div class="row">
                 <form role="form" class="form-horizontal" action="<@c.url value='/tasks/create' />" method="POST">
 
+                    <!--Title-->
                     <div class="control-group">
                         <label class="control-label" for="title">Title:</label>
 
                         <div class="controls">
-                            <input type="text" id="title" name="title" required="required" autofocus="autofocus"/>
+                            <input type="text" id="title" name="title" required="required"
+                                   autofocus="autofocus"/>
                         </div>
                     </div>
 
+                    <!--Due Date-->
                     <div class="control-group">
-                        <label class="control-label" for="dueDate">Due date:</label>
+                        <label class="control-label" for="title">Due Date:</label>
+
                         <div class="controls">
-                            <input type="text" id="dueDate" name="dueDate" required="required" />
+
+                            <input type='text' class="form-control" id='dateInput' name="dueDate"/>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#dateInput').datepicker();
+                                    format: 'dd.mm.yyyy'
+                                });
+                            </script>
                         </div>
                     </div>
 
-                   <div class="control-group">
-                       <label class="control-label" for="priority">Priority:</label>
-                       <div class="controls">
-                           <select id="priority" name="priority">
-                               <option value="LOW">Low</option>
-                               <option value="MEDIUM">Medium</option>
-                               <option value="HIGH">High</option>
-                           </select>
-                       </div>
-                   </div>
+                    <!--Priority-->
+                    <div class="control-group">
+                        <label class="control-label" for="priority">Priority:</label>
+
+                        <div class="controls">
+                            <select id="priority" path="priority" name="priority">
+                                <option value="LOW" selected>Low</option>
+                                <option value="MEDIUM" >Medium</option>
+                                <option value="HIGH" >High</option>
+                            </select>
+                        </div>
+                    </div>
 
 
                     <div class="form-actions">

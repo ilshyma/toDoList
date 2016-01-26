@@ -4,7 +4,7 @@
 
 
 <@layout.extends name="base.ftl">
-    <@layout.put block="title" type="append">: Create task</@layout.put>
+    <@layout.put block="title" type="append">: Edit task</@layout.put>
     <@layout.put block="topmenu.task.create.active">class="active"</@layout.put>
     <@layout.put block="contentTask" type="replace">
 
@@ -19,6 +19,7 @@
                 <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />"
                       method="POST">
 
+                    <!--Title-->
                     <div class="control-group">
                         <label class="control-label" for="title">Title:</label>
 
@@ -28,30 +29,54 @@
                         </div>
                     </div>
 
+                    <!--Due Date-->
+                    <div class="control-group">
+                        <label class="control-label" for="title">Due Date:</label>
+
+                        <div class="controls">
+
+                            <input type='text' class="form-control" id='dateInput' name="dueDate"
+                                   value="${task.dueDate}"/>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#dateInput').datepicker();
+                                    format: 'dd.mm.yyyy'
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <!--Priority-->
                     <div class="control-group">
                         <label class="control-label" for="priority">Priority:</label>
 
                         <div class="controls">
-                            <div class="input-group-btn" data-toggle="buttons-radio" id="priority" name="priority" >
-                                <input  type="button"  value="LOW" class="btn btn-default">Low
-                                <input  type="button"  value="MEDIUM" class="btn btn-default">Medium
-                                <input  type="button"  value="HIGH" class="btn btn-default">High
-                            </div>
-                            <!--
-                                                    <div class="controls">
-                                                        <input type="radio"  id="priority" name="priority" value="LOW"> Low<Br>
-                                                        <input type="radio"  id="priority" name="priority" value="MEDIUM"> Medium<Br>
-                                                        <input type="radio"  id="priority" name="priority" value="HIGH"> High<Br>
-                                                    </div>
-                                                    -->
+                            <select id="priority" path="priority" name="priority">
+                                <option value="LOW" <#if task.priority == "LOW">selected</#if>>Low</option>
+                                <option value="MEDIUM" <#if task.priority == "MEDIUM">selected</#if>>Medium</option>
+                                <option value="HIGH" <#if task.priority == "HIGH">selected</#if>>High</option>
+                            </select>
                         </div>
+                    </div>
 
+                    <!--Status-->
+                    <div class="control-group">
+                        <label class="control-label" for="priority">Status:</label>
+                        <div class="controls">
+                            <select id="status" path="status" name="status">
+                                <option value="DONE" <#if task.status == "DONE">selected</#if>>Done</option>
+                                <option value="IN_PROGRESS" <#if task.status == "IN_PROGRESS">selected</#if>>In progress</option>
+                            </select>
+                        </div>
                     </div>
 
 
+
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
-                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i> Cancel
+                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save
+                        </button>
+                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i>
+                            Cancel
                         </button>
                     </div>
 

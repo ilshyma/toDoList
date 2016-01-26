@@ -55,7 +55,11 @@ public class TaskController {
         Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
         task.setPriority(taskDTO.getPriority());
+        task.setDueDate(taskDTO.getDueDate());
+        task.setStatus(taskDTO.getStatus());
         LOGGER.info("new taskId priority: \"" + taskDTO.getPriority() + "\"");
+        LOGGER.info("new taskId dueDate: \"" + taskDTO.getDueDate() + "\"");
+
         taskRepository.save(task);
         return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());

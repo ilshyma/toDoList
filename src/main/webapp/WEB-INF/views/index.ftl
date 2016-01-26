@@ -66,19 +66,16 @@
 </div>
 
 <div class="row">
-    <div class="panel-body">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th data-field="name">Name</th>
-                    <th data-field="instances">Instances</th>
-                    <th data-field="services">Services</th>
-                </tr>
-                </thead>
-
-            </table>
-        </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+        </label>
     </div>
 </div>
 </@layout.block>

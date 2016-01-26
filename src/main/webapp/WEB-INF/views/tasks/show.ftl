@@ -68,10 +68,14 @@
                         </td>
                     </tr>
                     </#list>
-
                 </tbody>
             </table>
+            <a href="/tasks/create" class="btn btn-default" data-dismiss="modal">
+                <i class="icon-plus"></i>
+                Create task
+            </a>
         </div>
+
     </div>
 
 

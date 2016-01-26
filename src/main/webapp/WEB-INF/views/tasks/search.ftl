@@ -29,21 +29,48 @@
 
                 <tbody>
 
+                <tbody>
                     <#list tasks as currentTask>
                     <tr>
                         <td>${currentTask.id}</td>
                         <td>${currentTask.title}</td>
                         <td>${currentTask.dueDate}</td>
-                        <td>${currentTask.priority}</td>
-                        <td>${currentTask.done?c}</td>
-                        <td>
-                            <a class="btn btn-mini btn-primary" <i class="icon-edit icon-white"></i> Edit</a>
-                            <a class="btn btn-mini btn-danger"  <i class="icon-remove icon-white"></i> Delete</a>
+                        <#if currentTask.priority??><td>${currentTask.priority}</td><#else><td>null</td></#if>
 
+                        <td>
+                            <#if currentTask.status =="DONE">
+                            <span class="label label-success">
+                            <#else>
+                            <span class="label label label-default">
+                            </#if>
+                        ${currentTask.status}</span></td>
+                        <td>
+                            <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i
+                                    class="icon-pencil icon-white"></i></a>
+                            <a class="btn btn-mini btn-danger" data-toggle="modal"
+                               href="#confirm_delete_${currentTask.id}"><i class="icon-remove icon-white"></i></a>
+
+                            <div class="modal hide" id="confirm_delete_${currentTask.id}">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">x</button>
+                                    <h3>Confirmation</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure to delete todo ${currentTask.id} '${currentTask.title}' ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="/task/${currentTask.id}/delete" method="post">
+                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                        <a href="#" class="btn" data-dismiss="modal">No</a>
+
+                                    </form>
+                                </div>
+                            </div>
 
                         </td>
                     </tr>
                     </#list>
+
 
                 </tbody>
             </table>

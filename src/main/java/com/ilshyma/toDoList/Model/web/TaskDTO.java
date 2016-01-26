@@ -1,6 +1,7 @@
 package com.ilshyma.toDoList.Model.web;
 
 import com.ilshyma.toDoList.Model.Priority;
+import com.ilshyma.toDoList.Model.Status;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class TaskDTO{
 
     private long userId;
     private String title;
-    private boolean done;
+    private Status status;
     private Priority priority;
     private Date dueDate;
 
@@ -31,12 +32,12 @@ public class TaskDTO{
         this.userId = userId;
     }
 
-    public boolean isDone() {
-        return done;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Priority getPriority() {
