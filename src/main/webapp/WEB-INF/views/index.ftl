@@ -60,23 +60,19 @@
 <body>
 <@layout.block name="body">
 <div id="wrapper">
-    <h1>
-        Welcome our beloved leader!
-    </h1>
+
 </div>
 
 <div class="row">
-    <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
-        </label>
-        <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
-        </label>
-        <label class="btn btn-primary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
-        </label>
-    </div>
+    <h3>Welcome to Todolist MVC</h3>
+    <p>
+    <h4>Todolist MVC is a web-based task manager which allows you to:</h4>
+    <ul>
+        <li>Save and organize your todo list</li>
+        <li>Search easily your todo list</li>
+        <li>Sort and filter your todo list</li>
+        <li>Export and report your todo list</li>
+    </ul>
 </div>
 </@layout.block>
 </body>

@@ -49,7 +49,6 @@
 <body>
 
 
-
 <!---------------------------------->
 <!-----------top Menu--------------->
 <!---------------------------------->
@@ -61,7 +60,8 @@
         <div class="container">
             <a class="brand" href="/">Todolist MVC</a>
             <ul class="nav">
-                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/tasks/show">ToDo List</a></li>
+                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/tasks/show">ToDo List</a>
+                </li>
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -83,55 +83,57 @@
 <!---------------------------------->
 
 <div class="container">
-<div class="row">
+    <div class="row">
 
-    <!---------------------------------->
-    <!-----------sideMenu--------------->
-    <!---------------------------------->
+        <!---------------------------------->
+        <!-----------sideMenu--------------->
+        <!---------------------------------->
 
     <@layout.block name="sideMenu">
 
-    <div class="span3">
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                <li class="nav-header">Hi user !</li>
-                <li class="divider"></li>
-                <li class="nav-header">Search task</li>
-                <li>
-                    <form role="form" id="searchForm"  class="form-search"  action="<@c.url value='/tasks/search' />" method="POST">
-                        <div class="input-append">
-                            <input type="text" name="title" class="input-small search-query"
-                                   placeholder="search by title" required="required">
-                            <button type="submit" class="btn">Go!</button>
-                        </div>
-                    </form>
-                </li>
-            </ul>
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Hi user !</li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Search task</li>
+                    <li>
+                        <form role="form" id="searchForm" class="form-search" action="<@c.url value='/tasks/search' />"
+                              method="POST">
+                            <div class="input-append">
+                                <input type="text" name="title" class="input-small search-query"
+                                       placeholder="search by title" required="required">
+                                <button type="submit" class="btn">Go!</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-</@layout.block>
+    </@layout.block>
 
-    <!---------------------------------->
-    <!-----------Content---------------->
-    <!---------------------------------->
+        <!---------------------------------->
+        <!-----------Content---------------->
+        <!---------------------------------->
 
     <@layout.block name="contentTask">
 
         <div class="span9">
             <div class="well">
                 <div class="page-header">
-                    <h1>What u want?</h1>
+                    <h1>Welcome to Todolist MVC</h1>
                 </div>
-
-
-
+                <a href="/tasks/show" class="btn btn-default" data-dismiss="modal">
+                    <i class="icon-list-alt"></i>
+                    Open ToDo List
+                </a>
             </div>
         </div>
 
 
 
-</@layout.block>
+    </@layout.block>
 </body>
 
 

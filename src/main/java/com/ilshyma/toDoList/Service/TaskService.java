@@ -59,7 +59,7 @@ public class TaskService {
         taskRepository.create(
                 new Task()
                         .setTitle("Create Sessions system")
-                        .setStatus(Status.DONE)
+                        .setStatus(Status.IN_PROGRESS)
                         .setPriority(Priority.LOW)
                         .setDueDate(new Date())
         );
@@ -67,7 +67,7 @@ public class TaskService {
         taskRepository.create(
                 new Task()
                         .setTitle("Modify Create Page")
-                        .setStatus(Status.IN_PROGRESS)
+                        .setStatus(Status.DONE)
                         .setPriority(Priority.HIGH)
                         .setDueDate(new Date())
         );
@@ -81,7 +81,7 @@ public class TaskService {
         taskRepository.create(
                 new Task()
                         .setTitle("Create new button \"Create\"")
-                        .setStatus(Status.IN_PROGRESS)
+                        .setStatus(Status.DONE)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
         );

@@ -14,6 +14,7 @@
                 <h1>Search results for title: ${searchTitle}</h1>
             </div>
 
+            <#if tasks?has_content>
             <table class="table table-bordered table-striped">
 
                 <thead>
@@ -30,6 +31,7 @@
                 <tbody>
 
                 <tbody>
+
                     <#list tasks as currentTask>
                     <tr>
                         <td>${currentTask.id}</td>
@@ -71,11 +73,13 @@
                     </tr>
                     </#list>
 
-
                 </tbody>
             </table>
+        <#else>
+            No results!
+        </#if>
             <div class="form-actions">
-                <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i> Back</button>
+                <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-arrow-left"></i> Back</button>
             </div>
         </div>
     </div>

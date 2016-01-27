@@ -54,7 +54,7 @@
                                     <h3>Confirmation</h3>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Are you sure to delete todo ${currentTask.id} '${currentTask.title}' ?</p>
+                                    <p>Are you sure to delete task "${currentTask.title}" ?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <form action="/task/${currentTask.id}/delete" method="post">

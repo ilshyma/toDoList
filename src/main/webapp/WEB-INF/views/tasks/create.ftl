@@ -34,7 +34,7 @@
 
                         <div class="controls">
 
-                            <input type='text' class="form-control" id='dateInput' name="dueDate"/>
+                            <input type='text' class="form-control" id='dateInput' name="dueDate" required="required"/>
                             <script type="text/javascript">
                                 $(function () {
                                     $('#dateInput').datepicker();
