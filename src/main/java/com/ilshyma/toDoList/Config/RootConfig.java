@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * Created by user on 18.01.2016.
  */
 @EnableWebMvc
-@EnableWebSecurity
+
 @EnableWebMvcSecurity
 @Configuration
 @ComponentScan({

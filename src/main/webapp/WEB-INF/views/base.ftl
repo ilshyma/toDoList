@@ -2,7 +2,7 @@
 <#assign fn=JspTaglibs["http://java.sun.com/jsp/jstl/functions"] />
 <#assign s=JspTaglibs["http://www.springframework.org/tags"] />
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"] />
-<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"] />
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -50,9 +50,7 @@
 <body>
 
 
-<!---------------------------------->
 <!-----------top Menu--------------->
-<!---------------------------------->
 
 <@layout.block name="topMenu">
 
@@ -66,7 +64,14 @@
             </ul>
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="icon-user"></i> Hi! <span class="caret"></span>
+                    <@security.authorize access="isAuthenticated()">
+                        <i class="icon-user"></i> Hi, <@security.authentication property="principal.username" />!
+                    </@security.authorize>
+
+                    <@security.authorize access="! isAuthenticated()">
+                        <i class="icon-user"></i> Hi,Guest!
+                    </@security.authorize>
+                    <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="/user/account">My account</a></li>
@@ -79,16 +84,12 @@
 </div>
 </@layout.block>
 
-<!---------------------------------->
 <!-----------Work page content------>
-<!---------------------------------->
 
 <div class="container">
     <div class="row">
 
-        <!---------------------------------->
         <!-----------sideMenu--------------->
-        <!---------------------------------->
 
     <@layout.block name="sideMenu">
 
@@ -114,9 +115,7 @@
 
     </@layout.block>
 
-        <!---------------------------------->
         <!-----------Content---------------->
-        <!---------------------------------->
 
     <@layout.block name="contentTask">
 
@@ -136,7 +135,9 @@
                     <p><a class="btn btn-lg btn-success" href="<@c.url value='/login' />" role="button">Войти</a></p>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <p>Ваш логин: <sec:authentication property="principal.username" /></p>
+                    <p>Ваш логин:
+                        <sec:authentication property="principal.username"/>
+                    </p>
                     <p><a class="btn btn-lg btn-danger" href="<@c.url value="/logout" />" role="button">Выйти</a></p>
 
                 </sec:authorize>

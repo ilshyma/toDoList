@@ -1,12 +1,12 @@
 package com.ilshyma.toDoList.repository;
 
 import com.ilshyma.toDoList.Model.Entity.User;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by user on 19.01.2016.
@@ -14,33 +14,21 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private SessionFactory sessionFactory;
 
+    @SuppressWarnings("unchecked")
+    public User findByUserName(String username) {
 
-    public User create(final User user) {
-        entityManager.persist(user);
-        return user;
-    }
+        List<User> users = new ArrayList<User>();
 
-    public void remove(final User user) {
-        entityManager.createNativeQuery("DELETE FROM todo t WHERE t.userId = " + user.getId()).executeUpdate();
-        User u = entityManager.find(User.class, user.getId());
-        entityManager.remove(u);
-    }
+        users = sessionFactory.getCurrentSession().createQuery("from User where username=?").setParameter(0, username)
+                .list();
 
-    public User getUserByLogin(final String login) {
-        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLogin", User.class);
-        query.setParameter("p_login", login);
-        List<User> users = query.getResultList();
-        return (users != null && !users.isEmpty()) ? users.get(0) : null;
-    }
-
-    public boolean login(final String login, final String password) {
-        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLoginAndPassword", User.class);
-        query.setParameter("p_login", login);
-        query.setParameter("p_password", password);
-        List<User> users = query.getResultList();
-        return (users != null && !users.isEmpty());
+        if (users.size() > 0) {
+            return users.get(0);
+        } else {
+            return null;
+        }
     }
 }
