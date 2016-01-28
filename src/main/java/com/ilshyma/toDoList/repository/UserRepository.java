@@ -1,6 +1,6 @@
 package com.ilshyma.toDoList.repository;
 
-import com.ilshyma.toDoList.Model.User;
+import com.ilshyma.toDoList.Model.Entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -29,16 +29,16 @@ public class UserRepository {
         entityManager.remove(u);
     }
 
-    public User getUserByEmail(final String email) {
-        TypedQuery<User> query = entityManager.createNamedQuery("findUserByEmail", User.class);
-        query.setParameter("p_email", email);
+    public User getUserByLogin(final String login) {
+        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLogin", User.class);
+        query.setParameter("p_login", login);
         List<User> users = query.getResultList();
         return (users != null && !users.isEmpty()) ? users.get(0) : null;
     }
 
-    public boolean login(final String email, final String password) {
-        TypedQuery<User> query = entityManager.createNamedQuery("findUserByEmailAndPassword", User.class);
-        query.setParameter("p_email", email);
+    public boolean login(final String login, final String password) {
+        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLoginAndPassword", User.class);
+        query.setParameter("p_login", login);
         query.setParameter("p_password", password);
         List<User> users = query.getResultList();
         return (users != null && !users.isEmpty());

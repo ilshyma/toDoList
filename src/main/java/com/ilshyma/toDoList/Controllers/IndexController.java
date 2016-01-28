@@ -21,15 +21,11 @@ public class IndexController {
 
     @RequestMapping(value = {"/"})
     protected ModelAndView index(Principal principal) throws Exception {
+
         ModelAndView model = new ModelAndView("base");
         return model;
     }
 
-    @RequestMapping(value = {"/index"})
-    protected ModelAndView index2(Principal principal) throws Exception {
-        ModelAndView model = new ModelAndView("index");
-        return model;
-    }
 
 
 }

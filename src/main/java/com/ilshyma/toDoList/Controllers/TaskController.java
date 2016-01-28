@@ -1,7 +1,7 @@
 package com.ilshyma.toDoList.Controllers;
 
 
-import com.ilshyma.toDoList.Model.Task;
+import com.ilshyma.toDoList.Model.Entity.Task;
 import com.ilshyma.toDoList.Model.web.TaskDTO;
 import com.ilshyma.toDoList.repository.TaskRepository;
 import org.apache.log4j.Logger;
@@ -34,6 +34,7 @@ public class TaskController {
     protected ModelAndView show() throws Exception {
         ModelAndView model = new ModelAndView("tasks/show");
         LOGGER.info(taskRepository.getAllTasks());
+
         model.addObject("tasks", taskRepository.getAllTasks());
         return model;
     }

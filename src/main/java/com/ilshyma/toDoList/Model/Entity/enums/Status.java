@@ -1,4 +1,4 @@
-package com.ilshyma.toDoList.Model;
+package com.ilshyma.toDoList.Model.Entity.enums;
 
 /**
  * Created by user on 25.01.2016.

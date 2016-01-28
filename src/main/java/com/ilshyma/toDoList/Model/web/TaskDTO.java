@@ -1,7 +1,7 @@
 package com.ilshyma.toDoList.Model.web;
 
-import com.ilshyma.toDoList.Model.Priority;
-import com.ilshyma.toDoList.Model.Status;
+import com.ilshyma.toDoList.Model.Entity.enums.Priority;
+import com.ilshyma.toDoList.Model.Entity.enums.Status;
 
 import java.util.Date;
 

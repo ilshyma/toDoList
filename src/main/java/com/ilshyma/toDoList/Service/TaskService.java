@@ -1,8 +1,8 @@
 package com.ilshyma.toDoList.Service;
 
-import com.ilshyma.toDoList.Model.Priority;
-import com.ilshyma.toDoList.Model.Status;
-import com.ilshyma.toDoList.Model.Task;
+import com.ilshyma.toDoList.Model.Entity.Task;
+import com.ilshyma.toDoList.Model.Entity.enums.Priority;
+import com.ilshyma.toDoList.Model.Entity.enums.Status;
 import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +55,7 @@ public class TaskService {
 
     @PostConstruct
     protected void initialize() {
+
 
         taskRepository.create(
                 new Task()

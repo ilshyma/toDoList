@@ -1,6 +1,6 @@
 package com.ilshyma.toDoList.repository;
 
-import com.ilshyma.toDoList.Model.Task;
+import com.ilshyma.toDoList.Model.Entity.Task;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

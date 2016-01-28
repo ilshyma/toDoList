@@ -1,4 +1,7 @@
-package com.ilshyma.toDoList.Model;
+package com.ilshyma.toDoList.Model.Entity;
+
+import com.ilshyma.toDoList.Model.Entity.enums.Priority;
+import com.ilshyma.toDoList.Model.Entity.enums.Status;
 
 import javax.persistence.*;
 import java.io.Serializable;
