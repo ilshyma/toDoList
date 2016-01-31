@@ -19,13 +19,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    @Qualifier("userDetailsService")
-    UserDetailsService  userDetailsService;
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password("admin")
+                .roles("ADMIN");
     }
 
     @Override
@@ -41,11 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedPage("/403");
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        PasswordEncoder encoder = (PasswordEncoder) new BCryptPasswordEncoder();
-        return encoder;
-    }
 
 
 

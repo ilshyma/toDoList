@@ -4,7 +4,6 @@ import com.ilshyma.toDoList.Model.Entity.Task;
 import com.ilshyma.toDoList.Model.Entity.enums.Priority;
 import com.ilshyma.toDoList.Model.Entity.enums.Status;
 import com.ilshyma.toDoList.repository.TaskRepository;
-import com.ilshyma.toDoList.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +22,6 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
-    private UserRepository userRepository;
 
     public Task getTaskById(final long id) {
         return taskRepository.getTaskById(id);
