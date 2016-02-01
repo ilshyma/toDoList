@@ -30,7 +30,7 @@ public class TaskController {
 
 //----------Show page----------------
 
-    @RequestMapping(value = "/tasks/show", method = RequestMethod.GET)
+    @RequestMapping(value = "/task/show", method = RequestMethod.GET)
     protected ModelAndView show() throws Exception {
         ModelAndView model = new ModelAndView("tasks/show");
         LOGGER.info(taskRepository.getAllTasks());
@@ -79,7 +79,7 @@ public class TaskController {
     }
 
     //----------Search page----------------
-    @RequestMapping(value = "/tasks/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/task/search", method = RequestMethod.POST)
     protected ModelAndView searchResultPage(@ModelAttribute("title") final String title) throws Exception {
         LOGGER.info("Search word: \"" + title + "\"");
         taskRepository.getTaskByTitle(title);
@@ -92,14 +92,14 @@ public class TaskController {
 
 //--------------Create page-----------------
 
-    @RequestMapping(value = "/tasks/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/task/create", method = RequestMethod.GET)
     protected ModelAndView createTaskPage() throws Exception {
         return new ModelAndView("/tasks/create", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());
         }});
     }
 
-    @RequestMapping(value = "/tasks/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/task/create", method = RequestMethod.POST)
     protected ModelAndView createTaskProcessor(@ModelAttribute final Task task) throws Exception {
         taskRepository.save(task);
         return new ModelAndView("tasks/show", new HashMap<String, Object>() {{

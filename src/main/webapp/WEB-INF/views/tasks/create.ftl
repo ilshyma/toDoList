@@ -18,6 +18,7 @@
             <div class="row">
                 <form role="form" class="form-horizontal" action="<@c.url value='/tasks/create' />" method="POST">
 
+
                     <!--Title-->
                     <div class="control-group">
                         <label class="control-label" for="title">Title:</label>

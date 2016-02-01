@@ -27,18 +27,18 @@ public class TaskRepository {
     }
 
     public List<Task> getTaskListByUser(final long userId) {
-        TypedQuery<Task> query = entityManager.createNamedQuery("getTaskByUser", Task.class);
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYUSER, Task.class);
         query.setParameter(1, userId);
         return query.getResultList();
     }
 
     public List<Task> getAllTasks() {
-        TypedQuery<Task> query = entityManager.createNamedQuery("getAllTasks", Task.class);
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKALL, Task.class);
         return query.getResultList();
     }
 
     public List<Task> getTaskByTitle( final String title) {
-        TypedQuery<Task> query = entityManager.createNamedQuery("getTaskByTitle", Task.class);
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYTITLE, Task.class);
         query.setParameter(1, "%" + title.toUpperCase() + "%");
         return query.getResultList();
     }
@@ -64,6 +64,7 @@ public class TaskRepository {
         Task t = entityManager.find(Task.class, task.getId());
         entityManager.remove(t);
     }
+
 
 
 }

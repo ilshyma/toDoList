@@ -69,14 +69,14 @@
                     </@security.authorize>
 
                     <@security.authorize access="! isAuthenticated()">
-                        <i class="icon-user"></i> Hi,Guest!
+                        <i class="icon-user"></i> Hi, Guest!
                     </@security.authorize>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/user/account">My account</a></li>
+                    <li><a href="#">My account</a></li>
                     <li class="divider"></li>
-                    <li><a href="/user/logout">Sign out</a></li>
+                    <li><a href="/login?logout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -100,7 +100,7 @@
                     <li class="divider"></li>
                     <li class="nav-header">Search task</li>
                     <li>
-                        <form role="form" id="searchForm" class="form-search" action="<@c.url value='/tasks/search' />"
+                        <form role="form" id="searchForm" class="form-search" action="<@c.url value='/task/search' />"
                               method="POST">
                             <div class="input-append">
                                 <input type="text" name="title" class="input-small search-query"
@@ -126,7 +126,7 @@
                 </div>
 
 
-                <a href="/tasks/show" class="btn btn-default" data-dismiss="modal">
+                <a href="/task/show" class="btn btn-default" data-dismiss="modal">
                     <i class="icon-list-alt"></i>
                     Open ToDo List
                 </a>

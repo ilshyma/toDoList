@@ -1,73 +1,84 @@
 package com.ilshyma.toDoList.Model.Entity;
 
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-/**
- * Created by user on 16.01.2016.
- */
-
+@SuppressWarnings("serial")
 @Entity
-@Table(name = "users", catalog = "test")
-public class User {
+@Table(name = "USER")
+@NamedQueries({
+        @NamedQuery(name = User.FIND_BY_USERNAME, query = "select a from User a where a.userName = :userName")
+})
+public class User implements java.io.Serializable {
 
-    private String username;
+    public static final String FIND_BY_USERNAME = "User.findByUserName";
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(unique = true)
+    private String userName;
     private String password;
-    private boolean enabled;
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+    private String role;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Task> tasks;
 
     public User() {
     }
 
-    public User(String username, String password, boolean enabled) {
-        this.username = username;
+    public User(String userName) {
+        this.userName = userName;
+    }
+
+
+    public User(String userName, String password, String role) {
+        this.userName = userName;
         this.password = password;
-        this.enabled = enabled;
+        this.role = role;
     }
 
-    public User(String username, String password, boolean enabled, Set<UserRole> userRole) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.userRole = userRole;
-    }
 
-    @Id
-    @Column(name = "username", unique = true, nullable = false, length = 45)
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Column(name = "password", nullable = false, length = 60)
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Column(name = "enabled", nullable = false)
-    public boolean isEnabled() {
-        return this.enabled;
+    public String getRole() {
+        return role;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<UserRole> getUserRole() {
-        return this.userRole;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
+    public void setId(Long id) {
+        this.id = id;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

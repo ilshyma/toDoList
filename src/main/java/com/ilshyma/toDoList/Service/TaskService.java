@@ -1,9 +1,11 @@
 package com.ilshyma.toDoList.Service;
 
 import com.ilshyma.toDoList.Model.Entity.Task;
+import com.ilshyma.toDoList.Model.Entity.User;
 import com.ilshyma.toDoList.Model.Entity.enums.Priority;
 import com.ilshyma.toDoList.Model.Entity.enums.Status;
 import com.ilshyma.toDoList.repository.TaskRepository;
+import com.ilshyma.toDoList.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Task getTaskById(final long id) {
         return taskRepository.getTaskById(id);
@@ -55,13 +60,19 @@ public class TaskService {
     protected void initialize() {
 
 
-        taskRepository.create(
-                new Task()
-                        .setTitle("Create Sessions system")
-                        .setStatus(Status.IN_PROGRESS)
-                        .setPriority(Priority.LOW)
-                        .setDueDate(new Date())
-        );
+        userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
+
+        User admin = new User("ilshyma", "123", "ROLE_USER");
+        userRepository.save(admin);
+
+
+                taskRepository.create(
+                        new Task()
+                                .setTitle("Create Sessions system")
+                                .setStatus(Status.IN_PROGRESS)
+                                .setPriority(Priority.LOW)
+                                .setDueDate(new Date())
+                );
 
         taskRepository.create(
                 new Task()

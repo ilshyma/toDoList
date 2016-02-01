@@ -26,8 +26,34 @@
 
     <style type="text/css">
         body {
-            padding-top: 60px;
-            /* 60px to make the container go all the way to the bottom of the topbar */
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
         }
     </style>
 </@layout.block>
@@ -49,28 +75,29 @@
 
 
 
-<div class="well container" style="width: 250px;">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Please sign in</h3>
-        </div>
-        <div class="panel-body">
+<div class="container">
 
-            <form action="<@c.url value='/login' />" method="POST">
-                <#if error??>
-                    <span class="label label-important">${error}</span>
-                </#if>
-                <#if msg??>
-                    <span class="label label-success">${msg}</span>
-                </#if>
+    <form class="form-signin" action="<@c.url value='/login' />" method="POST">
 
-                <input type="text" class="form-control" name="username" placeholder="User Name" required autofocus>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
-                <button class="btn btn-success btn" type="submit">Login</button>
-            </form>
+        <h2 class="form-signin-heading">Please sign in</h2>
 
-        </div>
-    </div>
+        <#if error??>
+            <div class="alert alert-danger">${error}</div>
+        </#if>
+        <#if msg??>
+            <div class="alert alert-success">${msg}</div>
+        </#if>
+
+
+        <input type="text" name="username" class="input-block-level" placeholder="User Name" required autofocus>
+        <input type="password" name="password"  class="input-block-level" placeholder="Password" required>
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+    </form>
+
+
 </div>
 
 </@layout.block>

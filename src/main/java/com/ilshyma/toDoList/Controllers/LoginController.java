@@ -2,9 +2,8 @@ package com.ilshyma.toDoList.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
 
 /**
  * Created by user on 28.01.2016.
@@ -13,8 +12,21 @@ import java.security.Principal;
 public class LoginController {
 
     @RequestMapping(value = {"/login"})
-    protected ModelAndView login(Principal principal) throws Exception {
-        ModelAndView model = new ModelAndView("login");
+    protected ModelAndView login(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "logout", required = false) String logout) {
+
+        ModelAndView model = new ModelAndView();
+        if (error != null) {
+            model.addObject("error", "Invalid username or password!");
+        }
+        if (logout != null) {
+            model.addObject("msg", "You've been logged out successfully.");
+        }
+        model.setViewName("login2");
+
         return model;
+
     }
 }
+
