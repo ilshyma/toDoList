@@ -46,7 +46,18 @@ public class UserRepository {
     public User findByUserName(String userName) {
         try {
             return entityManager.createNamedQuery(User.FIND_BY_USERNAME, User.class)
-                    .setParameter("username", userName)
+                    .setParameter("userName", userName)
+                    .getSingleResult();
+        } catch (PersistenceException e) {
+            return null;
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public User findIdByUserName(String userName) {
+        try {
+            return entityManager.createNamedQuery(User.FIND_ID_BY_USERNAME, User.class)
+                    .setParameter("userName", userName)
                     .getSingleResult();
         } catch (PersistenceException e) {
             return null;

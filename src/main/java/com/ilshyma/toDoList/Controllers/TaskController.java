@@ -2,10 +2,14 @@ package com.ilshyma.toDoList.Controllers;
 
 
 import com.ilshyma.toDoList.Model.Entity.Task;
+import com.ilshyma.toDoList.Model.Entity.User;
 import com.ilshyma.toDoList.Model.web.TaskDTO;
 import com.ilshyma.toDoList.repository.TaskRepository;
+import com.ilshyma.toDoList.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.HashMap;
 
 /**
@@ -27,15 +32,25 @@ public class TaskController {
     @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
 //----------Show page----------------
 
     @RequestMapping(value = "/task/show", method = RequestMethod.GET)
     protected ModelAndView show() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ModelAndView model = new ModelAndView("tasks/show");
-        LOGGER.info(taskRepository.getAllTasks());
+        //LOGGER.info(taskRepository.getAllTasks());
+        LOGGER.info("user name  = " + auth.getName());
 
-        model.addObject("tasks", taskRepository.getAllTasks());
+        System.out.println("tro lo lo ");
+        LOGGER.info("user by name  = " + userRepository.findByUserName("admin"));
+        LOGGER.info("user by id and auth  = " + userRepository.findByUserName(auth.getName()).getId());
+        //LOGGER.info(taskRepository.getTaskListByUser(1));
+
+        model.addObject("tasks", taskRepository.getTaskListByUser((Long) userRepository.findByUserName(auth.getName()).getId()));
         return model;
     }
 

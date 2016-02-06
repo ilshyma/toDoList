@@ -28,7 +28,7 @@ public class TaskRepository {
 
     public List<Task> getTaskListByUser(final long userId) {
         TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYUSER, Task.class);
-        query.setParameter(1, userId);
+        query.setParameter("user", userId);
         return query.getResultList();
     }
 

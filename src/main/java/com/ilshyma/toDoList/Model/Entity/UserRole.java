@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by star on 28.01.2016.
  */
 @Entity
-@Table(name = "user_roles", catalog = "test", uniqueConstraints = @UniqueConstraint(columnNames = { "role", "username" }))
+@Table(name = "user_roles")
 public class UserRole {
 
     private Integer userRoleId;

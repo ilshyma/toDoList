@@ -10,11 +10,13 @@ import java.util.Set;
 @Entity
 @Table(name = "USER")
 @NamedQueries({
-        @NamedQuery(name = User.FIND_BY_USERNAME, query = "select a from User a where a.userName = :userName")
+        @NamedQuery(name = User.FIND_BY_USERNAME, query = "select a from User a where a.userName = :userName"),
+        @NamedQuery(name = User.FIND_ID_BY_USERNAME, query = "select a.id from User a where a.userName = :userName")
 })
 public class User implements java.io.Serializable {
 
     public static final String FIND_BY_USERNAME = "User.findByUserName";
+    public static final String FIND_ID_BY_USERNAME = "User.findIdByUserName";
 
     @Id
     @GeneratedValue
@@ -24,9 +26,6 @@ public class User implements java.io.Serializable {
     private String userName;
     private String password;
     private String role;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Task> tasks;
 
     public User() {
     }
@@ -65,13 +64,6 @@ public class User implements java.io.Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 
     public String getUserName() {

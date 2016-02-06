@@ -60,19 +60,21 @@ public class TaskService {
     protected void initialize() {
 
 
-        userRepository.save(new User("admin", "admin", "ROLE_ADMIN"));
-
-        User admin = new User("ilshyma", "123", "ROLE_USER");
+        User admin = new User("admin", "admin", "ROLE_ADMIN");
         userRepository.save(admin);
 
+        User user = new User("user", "123", "ROLE_USER");
+        userRepository.save(user);
 
-                taskRepository.create(
-                        new Task()
-                                .setTitle("Create Sessions system")
-                                .setStatus(Status.IN_PROGRESS)
-                                .setPriority(Priority.LOW)
-                                .setDueDate(new Date())
-                );
+
+        taskRepository.create(
+                new Task()
+                        .setTitle("Create Sessions system")
+                        .setStatus(Status.IN_PROGRESS)
+                        .setPriority(Priority.LOW)
+                        .setDueDate(new Date())
+                        .setUser(admin)
+        );
 
         taskRepository.create(
                 new Task()
@@ -80,6 +82,7 @@ public class TaskService {
                         .setStatus(Status.DONE)
                         .setPriority(Priority.HIGH)
                         .setDueDate(new Date())
+                        .setUser(admin)
         );
         taskRepository.create(
                 new Task()
@@ -87,6 +90,7 @@ public class TaskService {
                         .setStatus(Status.IN_PROGRESS)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
+                        .setUser(user)
         );
         taskRepository.create(
                 new Task()
@@ -94,6 +98,7 @@ public class TaskService {
                         .setStatus(Status.DONE)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
+                        .setUser(user)
         );
 
 

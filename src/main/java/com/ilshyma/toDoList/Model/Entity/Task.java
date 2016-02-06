@@ -14,10 +14,11 @@ import java.util.Set;
 /**
  * Created by star on 18.01.2016.
  */
+
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getAllTasks", query = "SELECT t FROM Task t order by t.dueDate"),
-        @NamedQuery(name = "getTaskByUser", query = "SELECT t FROM Task t where t.user = ?1 order by t.dueDate"),
+        @NamedQuery(name = "getTaskByUser", query = "SELECT t FROM Task t where t.user = :user order by t.dueDate"),
         @NamedQuery(name = "getTaskByTitle", query = "SELECT t FROM Task t where upper(t.title) like ?1 order by t.dueDate")
 })
 public class Task implements Serializable {
@@ -49,8 +50,7 @@ public class Task implements Serializable {
 
     public Task() {
         priority = Priority.LOW;
-        status = Status.IN_PROGRESS;
-    }
+        status = Status.IN_PROGRESS;    }
 
     public Task( String title, Status status, Priority priority, Date dueDate, User user) {
 
@@ -104,8 +104,8 @@ public class Task implements Serializable {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Task setUser(User user) {
+        this.user = user; return this;
     }
 
 
