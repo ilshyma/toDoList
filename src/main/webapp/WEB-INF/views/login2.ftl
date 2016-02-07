@@ -21,7 +21,6 @@
 <@layout.block name="css_head">
     <!-- Bootstrap Styles-->
     <link href="<@c.url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"/>
-    <link href="<@c.url value="/resources/css/bootstrap-datepicker.css" />" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 
     <style type="text/css">

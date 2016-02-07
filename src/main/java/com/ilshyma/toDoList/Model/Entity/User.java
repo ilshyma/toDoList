@@ -22,7 +22,7 @@ public class User implements java.io.Serializable {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
+    //@Column(unique = true)
     private String userName;
     private String password;
     private String role;

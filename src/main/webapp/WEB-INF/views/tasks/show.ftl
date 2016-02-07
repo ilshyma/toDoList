@@ -8,12 +8,13 @@
     <@layout.put block="contentTask" type="replace">
 
 
-    <div class="span9">
+    <div class="span9" xmlns="http://www.w3.org/1999/html">
         <div class="well">
             <div class="page-header">
                 <h1>My Todo list</h1>
             </div>
 
+        <#if tasks?has_content>
             <table class="table table-bordered table-striped">
 
                 <thead>
@@ -70,6 +71,13 @@
                     </#list>
                 </tbody>
             </table>
+        <#else>
+
+            <div class="alert alert-info">You have not any task. You can create it right now!</div>
+        </#if>
+
+
+
             <a href="/task/create" class="btn btn-default" data-dismiss="modal">
                 <i class="icon-plus"></i>
                 Create task

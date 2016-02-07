@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/login").permitAll()
                 .antMatchers("/task/delete/**").hasRole("ADMIN")
                 .antMatchers("/task/**").hasAnyRole("ADMIN", "USER")
-
+                .antMatchers("/user/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -43,25 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login?logout")
                     .permitAll();
-    /*
-    public void configureGlobal(AuthenticationManagerBuilder  auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.
-                csrf().disable().
-                authorizeRequests()
-                .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin();
-
-    }
-*/
-    }
+      }
 
 
     @Bean

@@ -57,11 +57,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/">Todolist MVC</a>
-            <ul class="nav">
-                <li <@layout.block name="topmenu.task.show.active"></@layout.block> ><a href="/tasks/show">ToDo List</a>
-                </li>
-            </ul>
+            <a class="brand" href="/">Todolist</a>
+
             <div class="btn-group pull-right">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                     <@security.authorize access="isAuthenticated()">
@@ -74,7 +71,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">My account</a></li>
+                    <!--<li><a href="#">My account</a></li> -->
                     <li class="divider"></li>
                     <li><a href="/login?logout">Sign out</a></li>
                 </ul>
@@ -122,7 +119,7 @@
         <div class="span9">
             <div class="well">
                 <div class="page-header">
-                    <h1>Welcome to Todolist MVC</h1>
+                    <h1>Welcome to Todolist</h1>
                 </div>
 
 

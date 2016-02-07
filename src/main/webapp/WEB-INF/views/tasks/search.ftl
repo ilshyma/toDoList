@@ -74,7 +74,7 @@
                 </tbody>
             </table>
         <#else>
-            No results!
+            <div class="alert alert-info">No results!</div>
         </#if>
             <div class="form-actions">
                 <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-arrow-left"></i> Back</button>

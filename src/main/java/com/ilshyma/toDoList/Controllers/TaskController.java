@@ -2,13 +2,11 @@ package com.ilshyma.toDoList.Controllers;
 
 
 import com.ilshyma.toDoList.Model.Entity.Task;
-import com.ilshyma.toDoList.Model.Entity.User;
 import com.ilshyma.toDoList.Model.web.TaskDTO;
 import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
 import java.util.HashMap;
 
 /**
@@ -111,10 +108,6 @@ public class TaskController {
         model.addObject("searchTitle", title);
         return model;
 
-       /* return new ModelAndView("/tasks/search", new HashMap<String, Object>() {{
-            put("tasks", taskRepository.getTaskByTitleAndUser(title, finderUser));
-            put("searchTitle", title);
-        }});*/
     }
 
 
