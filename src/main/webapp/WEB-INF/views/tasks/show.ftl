@@ -18,7 +18,6 @@
 
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Due Date</th>
                     <th>Priority</th>
@@ -30,10 +29,11 @@
                 <tbody>
                     <#list tasks as currentTask>
                     <tr>
-                        <td>${currentTask.id}</td>
                         <td>${currentTask.title}</td>
                         <td>${currentTask.dueDate}</td>
-                        <#if currentTask.priority??><td>${currentTask.priority}</td><#else><td>null</td></#if>
+                        <#if currentTask.priority??>
+                            <td>${currentTask.priority}</td><#else>
+                            <td>null</td></#if>
 
                         <td>
                             <#if currentTask.status =="DONE">

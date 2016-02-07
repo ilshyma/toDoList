@@ -38,9 +38,6 @@ public class TaskController {
     UserRepository userRepository;
 
 
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-
 //----------Show page----------------
 
     @RequestMapping(value = "/task/show", method = RequestMethod.GET)
@@ -80,26 +77,16 @@ public class TaskController {
     }
 
     //-----------Delete task------------
-
- /*   @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
-    protected ModelAndView deleteTask (@PathVariable final long taskIdDelete) throws Exception {
-        LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
-        taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
-        return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
-            put("tasks", taskRepository.getAllTasks());
-        }});
-    }*/
-
- @Secured("ROLE_ADMIN")
-@RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
     protected String deleteTask(@PathVariable final long taskIdDelete) throws Exception {
         LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
         taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
         return "redirect:/task/show";
     }
 
-    //----------Search page----------------
-    @RequestMapping(value = "/task/search", method = RequestMethod.POST)
+    //----------Search page (all tasks)----------------
+    @RequestMapping(value = "/task/search1", method = RequestMethod.POST)
     protected ModelAndView searchResultPage(@ModelAttribute("title") final String title) throws Exception {
         LOGGER.info("Search word: \"" + title + "\"");
         taskRepository.getTaskByTitle(title);
@@ -109,11 +96,33 @@ public class TaskController {
             put("searchTitle", title);
         }});
     }
+    //----------Search page (by user)----------------
+    @RequestMapping(value = "/task/search", method = RequestMethod.POST)
+    protected ModelAndView searchResultPageByUser(@ModelAttribute("title") final String title) throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        LOGGER.info("Search word: \"" + title + "\"");
+            LOGGER.info("Searcher user is: \"" + userRepository.findByUserName(auth.getName()) + "\"");
+
+            LOGGER.info("Search results: \"" + taskRepository.getTaskByTitleAndUser(title, userRepository.findByUserName(auth.getName())) + "\"");
+
+        ModelAndView model = new ModelAndView("/tasks/search");
+        model.addObject("tasks", taskRepository.getTaskByTitleAndUser(title, userRepository.findByUserName(auth.getName())));
+        model.addObject("searchTitle", title);
+        return model;
+
+       /* return new ModelAndView("/tasks/search", new HashMap<String, Object>() {{
+            put("tasks", taskRepository.getTaskByTitleAndUser(title, finderUser));
+            put("searchTitle", title);
+        }});*/
+    }
+
 
 //--------------Create page-----------------
 
     @RequestMapping(value = "/task/create", method = RequestMethod.GET)
     protected ModelAndView createTaskPage() throws Exception {
+
         return new ModelAndView("/tasks/create", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());
         }});
@@ -121,6 +130,9 @@ public class TaskController {
 
     @RequestMapping(value = "/task/create", method = RequestMethod.POST)
     protected String createTaskProcessor(@ModelAttribute final Task task) throws Exception {
+        LOGGER.info("*create task*");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        task.setUser(userRepository.findByUserName(auth.getName()));
         taskRepository.save(task);
         return "redirect:/task/show";
     }

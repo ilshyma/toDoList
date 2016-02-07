@@ -19,13 +19,15 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "getAllTasks", query = "SELECT t FROM Task t order by t.dueDate"),
         @NamedQuery(name = "getTaskByUser", query = "SELECT t FROM Task t where t.user = :user order by t.dueDate"),
-        @NamedQuery(name = "getTaskByTitle", query = "SELECT t FROM Task t where upper(t.title) like ?1 order by t.dueDate")
+        @NamedQuery(name = "getTaskByTitle", query = "SELECT t FROM Task t where upper(t.title) like ?1 order by t.dueDate"),
+        @NamedQuery(name = "getTaskByTitleAndUser", query = "SELECT t FROM Task t where t.user = ?2 and upper(t.title) like ?1  order by t.dueDate")
 })
 public class Task implements Serializable {
 
     public static final String TASKALL = "getAllTasks";
     public static final String TASKBYUSER = "getTaskByUser";
     public static final String TASKBYTITLE = "getTaskByTitle";
+    public static final String TASKBYTITLEANDUSER = "getTaskByTitleAndUser";
 
 
     @Id
