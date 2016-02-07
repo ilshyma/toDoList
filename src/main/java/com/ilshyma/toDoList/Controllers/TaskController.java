@@ -8,6 +8,8 @@ import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,21 +38,19 @@ public class TaskController {
     UserRepository userRepository;
 
 
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+
 //----------Show page----------------
 
     @RequestMapping(value = "/task/show", method = RequestMethod.GET)
     protected ModelAndView show() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         ModelAndView model = new ModelAndView("tasks/show");
         //LOGGER.info(taskRepository.getAllTasks());
-        LOGGER.info("user name  = " + auth.getName());
-
-        System.out.println("tro lo lo ");
-        LOGGER.info("user by name  = " + userRepository.findByUserName("admin"));
-        LOGGER.info("user by id and auth  = " + userRepository.findByUserName(auth.getName()).getId());
-        //LOGGER.info(taskRepository.getTaskListByUser(1));
-
-        model.addObject("tasks", taskRepository.getTaskListByUser((Long) userRepository.findByUserName(auth.getName()).getId()));
+        LOGGER.info(" show tasks. user = " + auth.getName());
+        model.addObject("tasks", taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName())));
         return model;
     }
 
@@ -67,7 +67,7 @@ public class TaskController {
 
 
     @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
-    protected ModelAndView editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
+    protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
         Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
         task.setPriority(taskDTO.getPriority());
@@ -75,22 +75,27 @@ public class TaskController {
         task.setStatus(taskDTO.getStatus());
         LOGGER.info("new taskId priority: \"" + taskDTO.getPriority() + "\"");
         LOGGER.info("new taskId dueDate: \"" + taskDTO.getDueDate() + "\"");
-
         taskRepository.save(task);
-        return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
-            put("tasks", taskRepository.getAllTasks());
-        }});
+        return "redirect:/task/show";
     }
 
     //-----------Delete task------------
 
-    @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
+ /*   @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
     protected ModelAndView deleteTask (@PathVariable final long taskIdDelete) throws Exception {
         LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
         taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
         return new ModelAndView("/tasks/show", new HashMap<String, Object>() {{
             put("tasks", taskRepository.getAllTasks());
         }});
+    }*/
+
+ @Secured("ROLE_ADMIN")
+@RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
+    protected String deleteTask(@PathVariable final long taskIdDelete) throws Exception {
+        LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
+        taskRepository.remove(taskRepository.getTaskById(taskIdDelete));
+        return "redirect:/task/show";
     }
 
     //----------Search page----------------
@@ -115,11 +120,8 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/task/create", method = RequestMethod.POST)
-    protected ModelAndView createTaskProcessor(@ModelAttribute final Task task) throws Exception {
+    protected String createTaskProcessor(@ModelAttribute final Task task) throws Exception {
         taskRepository.save(task);
-        return new ModelAndView("tasks/show", new HashMap<String, Object>() {{
-            put("task", taskRepository.getTaskById(task.getId()));
-            put("tasks", taskRepository.getAllTasks());
-        }});
+        return "redirect:/task/show";
     }
 }

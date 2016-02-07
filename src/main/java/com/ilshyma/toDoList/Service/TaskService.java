@@ -32,8 +32,8 @@ public class TaskService {
         return taskRepository.getTaskById(id);
     }
 
-    public List<Task> getTasksListByUser(final long userId) {
-        return taskRepository.getTaskListByUser(userId);
+    public List<Task> getTaskListByUser(final User userId) {
+        return getTaskListByUser(userId);
     }
 
     public List<Task> getTaskByTitle(final String title) {
@@ -63,8 +63,11 @@ public class TaskService {
         User admin = new User("admin", "admin", "ROLE_ADMIN");
         userRepository.save(admin);
 
-        User user = new User("user", "123", "ROLE_USER");
+        User user = new User("user", "user", "ROLE_USER");
         userRepository.save(user);
+
+        User guest = new User("guest", "guest", "ROLE_GUEST");
+        userRepository.save(guest);
 
 
         taskRepository.create(
@@ -90,7 +93,7 @@ public class TaskService {
                         .setStatus(Status.IN_PROGRESS)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
-                        .setUser(user)
+                        .setUser(admin)
         );
         taskRepository.create(
                 new Task()
@@ -99,6 +102,30 @@ public class TaskService {
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(user)
+        );
+taskRepository.create(
+                new Task()
+                        .setTitle("Create new button 33")
+                        .setStatus(Status.DONE)
+                        .setPriority(Priority.MEDIUM)
+                        .setDueDate(new Date())
+                        .setUser(user)
+        );
+taskRepository.create(
+                new Task()
+                        .setTitle("Create new button 2")
+                        .setStatus(Status.DONE)
+                        .setPriority(Priority.MEDIUM)
+                        .setDueDate(new Date())
+                        .setUser(guest)
+        );
+taskRepository.create(
+                new Task()
+                        .setTitle("Create new button 1")
+                        .setStatus(Status.DONE)
+                        .setPriority(Priority.MEDIUM)
+                        .setDueDate(new Date())
+                        .setUser(guest)
         );
 
 

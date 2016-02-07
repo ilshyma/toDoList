@@ -16,7 +16,7 @@
             </div>
 
             <div class="row">
-                <form role="form" class="form-horizontal" action="<@c.url value='/tasks/create' />" method="POST">
+                <form role="form" class="form-horizontal" action="<@c.url value='/task/create' />" method="POST">
 
 
                     <!--Title-->

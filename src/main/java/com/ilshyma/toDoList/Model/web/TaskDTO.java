@@ -2,6 +2,7 @@ package com.ilshyma.toDoList.Model.web;
 
 import com.ilshyma.toDoList.Model.Entity.enums.Priority;
 import com.ilshyma.toDoList.Model.Entity.enums.Status;
+import com.ilshyma.toDoList.Model.Entity.User;
 
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import java.util.Date;
  */
 public class TaskDTO{
 
-    private long userId;
+    private User userId;
     private String title;
     private Status status;
     private Priority priority;
@@ -24,11 +25,11 @@ public class TaskDTO{
         this.title = title;
     }
 
-    public long getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

@@ -1,6 +1,7 @@
 package com.ilshyma.toDoList.repository;
 
 import com.ilshyma.toDoList.Model.Entity.Task;
+import com.ilshyma.toDoList.Model.Entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +27,7 @@ public class TaskRepository {
         return entityManager.find(Task.class, id);
     }
 
-    public List<Task> getTaskListByUser(final long userId) {
+     public List<Task> getTaskListByUser(final User userId) {
         TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYUSER, Task.class);
         query.setParameter("user", userId);
         return query.getResultList();

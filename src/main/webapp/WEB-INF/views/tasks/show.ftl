@@ -70,7 +70,7 @@
                     </#list>
                 </tbody>
             </table>
-            <a href="/tasks/create" class="btn btn-default" data-dismiss="modal">
+            <a href="/task/create" class="btn btn-default" data-dismiss="modal">
                 <i class="icon-plus"></i>
                 Create task
             </a>
