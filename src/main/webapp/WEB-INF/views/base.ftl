@@ -71,7 +71,8 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <!--<li><a href="#">My account</a></li> -->
+
+                    <li><a href="/user/create">Create users (only for admin)</a></li>
                     <li class="divider"></li>
                     <li><a href="/login?logout">Sign out</a></li>
                 </ul>
@@ -93,7 +94,6 @@
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Hi user !</li>
                     <li class="divider"></li>
                     <li class="nav-header">Search task</li>
                     <li>
@@ -106,6 +106,7 @@
                             </div>
                         </form>
                     </li>
+                    <li class="divider"></li>
                 </ul>
             </div>
         </div>

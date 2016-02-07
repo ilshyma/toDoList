@@ -5,7 +5,6 @@
 
 <@layout.extends name="base.ftl">
     <@layout.put block="title" type="append">: Edit task</@layout.put>
-    <@layout.put block="topmenu.task.create.active">class="active"</@layout.put>
     <@layout.put block="contentTask" type="replace">
 
 
@@ -16,8 +15,7 @@
             </div>
 
             <div class="row">
-                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />"
-                      method="POST">
+                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />" method="POST">
 
 
                     <!--Title-->
@@ -32,11 +30,11 @@
 
                     <!--Due Date-->
                     <div class="control-group">
-                        <label class="control-label" for="title">Due Date:</label>
+                        <label class="control-label" for="dueDate">Due Date:</label>
 
                         <div class="controls">
 
-                            <input type='text' class="form-control" id='dateInput' name="dueDate"
+                            <input type='text' class="form-control" id='dueDate' name="dueDate"
                                    value="${task.dueDate}" required="required"/>
                             <script type="text/javascript">
                                 $(function () {
@@ -62,7 +60,7 @@
 
                     <!--Status-->
                     <div class="control-group">
-                        <label class="control-label" for="priority">Status:</label>
+                        <label class="control-label" for="status">Status:</label>
                         <div class="controls">
                             <select id="status" path="status" name="status">
                                 <option value="DONE" <#if task.status == "DONE">selected</#if>>Done</option>
@@ -74,11 +72,13 @@
 
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save
-                        </button>
-                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i>
-                            Cancel
-                        </button>
+                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save </button>
+
+                            <a href="/task/show" class="btn btn-default" data-dismiss="modal">
+                                <i class="icon-arrow-left"></i>
+                                Back
+                            </a>
+
                     </div>
 
                 </form>

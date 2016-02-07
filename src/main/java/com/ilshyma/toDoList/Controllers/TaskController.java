@@ -62,19 +62,18 @@ public class TaskController {
 
     @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
     protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
-        Task task = taskRepository.getTaskById(taskIdEdit);
+        LOGGER.info("*edit task method*");
+        /*Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
         task.setPriority(taskDTO.getPriority());
         task.setDueDate(taskDTO.getDueDate());
         task.setStatus(taskDTO.getStatus());
-        LOGGER.info("new taskId priority: \"" + taskDTO.getPriority() + "\"");
-        LOGGER.info("new taskId dueDate: \"" + taskDTO.getDueDate() + "\"");
-        taskRepository.save(task);
+        taskRepository.save(task);*/
         return "redirect:/task/show";
     }
 
     //-----------Delete task------------
-    @Secured("ROLE_ADMIN")
+
     @RequestMapping(value = "/task/{taskIdDelete}/delete", method = RequestMethod.POST)
     protected String deleteTask(@PathVariable final long taskIdDelete) throws Exception {
         LOGGER.info("taskIdDelete: \"" + taskIdDelete + "\"");
@@ -123,7 +122,7 @@ public class TaskController {
 
     @RequestMapping(value = "/task/create", method = RequestMethod.POST)
     protected String createTaskProcessor(@ModelAttribute final Task task) throws Exception {
-        LOGGER.info("*create task*");
+        LOGGER.info("*create task method*");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         task.setUser(userRepository.findByUserName(auth.getName()));
         taskRepository.save(task);

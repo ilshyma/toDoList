@@ -20,9 +20,8 @@ public class IndexController {
     TaskRepository taskRepository;
 
     @RequestMapping(value = {"/"})
-    protected ModelAndView index() throws Exception {
-        ModelAndView model = new ModelAndView("base");
-        return model;
+    protected String index() throws Exception {
+       return "redirect:/task/show";
     }
     @RequestMapping(value = {"/index"})
     protected ModelAndView start() throws Exception {

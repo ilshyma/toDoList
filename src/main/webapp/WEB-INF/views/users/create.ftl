@@ -5,10 +5,12 @@
 
 <@layout.extends name="base.ftl">
     <@layout.put block="title" type="append">: Create new User</@layout.put>
+
+        <@layout.put block="sideMenu" type="replace"> </@layout.put>
     <@layout.put block="contentTask" type="replace">
 
 
-    <div class="span9">
+    <div class="span8">
         <div class="well">
             <div class="page-header">
                 <h1>Create new User</h1>

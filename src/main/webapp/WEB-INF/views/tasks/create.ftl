@@ -61,7 +61,11 @@
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Create</button>
-                        <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i> Cancel</button>
+
+                            <a href="/task/show" class="btn btn-default" data-dismiss="modal">
+                                <i class="icon-arrow-left"></i>
+                                Back
+                            </a>
                     </div>
 
                 </form>
