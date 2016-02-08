@@ -5,7 +5,6 @@
 
 <@layout.extends name="base.ftl">
     <@layout.put block="title" type="append">: Create task</@layout.put>
-    <@layout.put block="topmenu.task.create.active">class="active"</@layout.put>
     <@layout.put block="contentTask" type="replace">
 
 
@@ -31,7 +30,7 @@
 
                     <!--Due Date-->
                     <div class="control-group">
-                        <label class="control-label" for="title">Due Date:</label>
+                        <label class="control-label" for="dueDate">Due Date:</label>
 
                         <div class="controls">
 

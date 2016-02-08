@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 
 @Repository
@@ -21,6 +23,12 @@ public class UserRepository {
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
         entityManager.persist(user);
         return user;
+    }
+
+    public List<Long> getUserIdByUserName(final String userName) {
+        TypedQuery<Long> query = entityManager.createNamedQuery(User.FIND_ID_BY_USERNAME, Long.class);
+        query.setParameter(1, userName);
+        return query.getResultList();
     }
 
     @Transactional

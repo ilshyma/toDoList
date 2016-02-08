@@ -34,7 +34,7 @@
 
                         <div class="controls">
 
-                            <input type='text' class="form-control" id='dueDate' name="dueDate"
+                            <input type='text' class="form-control" id='dateInput' name="dueDate"
                                    value="${task.dueDate}" required="required"/>
                             <script type="text/javascript">
                                 $(function () {

@@ -7,7 +7,6 @@ import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -39,11 +38,9 @@ public class TaskController {
 
     @RequestMapping(value = "/task/show", method = RequestMethod.GET)
     protected ModelAndView show() throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+        LOGGER.info(" -- show tasks page -- ");
         ModelAndView model = new ModelAndView("tasks/show");
-        //LOGGER.info(taskRepository.getAllTasks());
-        LOGGER.info(" show tasks. user = " + auth.getName());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addObject("tasks", taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName())));
         return model;
     }
@@ -53,7 +50,8 @@ public class TaskController {
 
     @RequestMapping(value = "/task/{taskId}/edit", method = RequestMethod.GET)
     protected ModelAndView editTaskProcessor(@PathVariable final long taskId) throws Exception {
-        LOGGER.info("Edit taskId: \"" + taskId + "\"");
+        LOGGER.info(" -- edit tasks page -- ");
+        LOGGER.info("edit taskId: \"" + taskId + "\"");
         return new ModelAndView("/tasks/edit", new HashMap<String, Object>() {{
             put("task", taskRepository.getTaskById(taskId));
         }});
@@ -63,12 +61,12 @@ public class TaskController {
     @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
     protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO) throws Exception {
         LOGGER.info("*edit task method*");
-        /*Task task = taskRepository.getTaskById(taskIdEdit);
+        Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
         task.setPriority(taskDTO.getPriority());
         task.setDueDate(taskDTO.getDueDate());
         task.setStatus(taskDTO.getStatus());
-        taskRepository.save(task);*/
+        taskRepository.save(task);
         return "redirect:/task/show";
     }
 
