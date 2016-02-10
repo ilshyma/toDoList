@@ -16,6 +16,16 @@ public class TaskDTO{
     private Status status;
     private Priority priority;
     private Date dueDate;
+    private int countHours;
+
+
+    public int getCountHours() {
+        return countHours;
+    }
+
+    public void setCountHours(int countHours) {
+        this.countHours = countHours;
+    }
 
     public String getTitle() {
         return title;

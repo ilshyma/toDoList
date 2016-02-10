@@ -1,5 +1,6 @@
 package com.ilshyma.toDoList.Config;
 
+import com.ilshyma.toDoList.Model.Util.UsdCurrency;
 import com.ilshyma.toDoList.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserService userService() {
         return new UserService();
     }
+
 }
 
 

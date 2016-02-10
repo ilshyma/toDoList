@@ -107,7 +107,7 @@ public class TaskService {
                         .setUser(user)
                         .setCountHours(8)
         );
-taskRepository.create(
+        taskRepository.create(
                 new Task()
                         .setTitle("Create new button 33")
                         .setStatus(Status.DONE)
@@ -116,7 +116,7 @@ taskRepository.create(
                         .setUser(user)
                         .setCountHours(7)
         );
-taskRepository.create(
+        taskRepository.create(
                 new Task()
                         .setTitle("Create new button 2")
                         .setStatus(Status.DONE)
@@ -125,7 +125,7 @@ taskRepository.create(
                         .setUser(guest)
                         .setCountHours(9)
         );
-taskRepository.create(
+        taskRepository.create(
                 new Task()
                         .setTitle("Create new button 1")
                         .setStatus(Status.DONE)

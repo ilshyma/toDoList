@@ -13,27 +13,20 @@ import java.util.List;
 /**
  * Created by user on 10.02.2016.
  */
-@Component
 public class Reward {
     private static final Logger LOGGER = Logger.getLogger(Reward.class);
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    TaskRepository taskRepository;
 
+    public int getCountAllDoneHours(List<Task> list) {
+        LOGGER.info("count all done tasks");
+        int countAllDoneHours = 0;
 
-    public int getCountAllHours(List<Task> list) {
-        int countAllHours = 0;
-
-        LOGGER.info(list.size());
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getStatus() == Status.DONE) {
-                countAllHours = countAllHours + list.get(i).getCountHours();
-                LOGGER.info(countAllHours);
+                countAllDoneHours = countAllDoneHours + list.get(i).getCountHours();
             }
         }
-        LOGGER.info("itog  = " +countAllHours);
-            return countAllHours;
+        LOGGER.info("all done tasks count = " + countAllDoneHours);
+            return countAllDoneHours;
 
     }
 }

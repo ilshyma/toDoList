@@ -3,6 +3,7 @@ package com.ilshyma.toDoList.Model.Entity;
 import com.ilshyma.toDoList.Model.Entity.enums.Priority;
 import com.ilshyma.toDoList.Model.Entity.enums.Status;
 import com.ilshyma.toDoList.Model.Entity.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.*;
@@ -46,6 +47,7 @@ public class Task implements Serializable {
     private Status status;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dueDate;
 
 

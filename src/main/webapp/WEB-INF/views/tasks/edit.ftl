@@ -35,11 +35,11 @@
                         <div class="controls">
 
                             <input type='text' class="form-control" id='dateInput' name="dueDate"
-                                   value="${task.dueDate}" required="required"/>
+                                   value="${task.dueDate?string["dd.MM.yyyy"]}" required="required"/>
                             <script type="text/javascript">
                                 $(function () {
                                     $('#dateInput').datepicker();
-                                    format: 'dd.mm.yyyy'
+                                    format: 'dd-mm-yyyy'
                                 });
                             </script>
                         </div>
