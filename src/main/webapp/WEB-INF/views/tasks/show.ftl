@@ -22,9 +22,10 @@
                     <th>Title</th>
                     <th>Due Date</th>
                     <th>Priority</th>
+                    <th>Hours</th>
                     <th>Status</th>
                     <th>Action</th>
-                </tr>
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -35,7 +36,7 @@
                         <#if currentTask.priority??>
                             <td>${currentTask.priority}</td><#else>
                             <td>null</td></#if>
-
+                        <td>${currentTask.countHours}</td>
                         <td>
                             <#if currentTask.status =="DONE">
                             <span class="label label-success">

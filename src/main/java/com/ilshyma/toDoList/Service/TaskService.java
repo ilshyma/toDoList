@@ -77,6 +77,7 @@ public class TaskService {
                         .setPriority(Priority.LOW)
                         .setDueDate(new Date())
                         .setUser(admin)
+                        .setCountHours(1)
         );
 
         taskRepository.create(
@@ -86,6 +87,7 @@ public class TaskService {
                         .setPriority(Priority.HIGH)
                         .setDueDate(new Date())
                         .setUser(admin)
+                        .setCountHours(5)
         );
         taskRepository.create(
                 new Task()
@@ -94,6 +96,7 @@ public class TaskService {
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(admin)
+                        .setCountHours(3)
         );
         taskRepository.create(
                 new Task()
@@ -102,6 +105,7 @@ public class TaskService {
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(user)
+                        .setCountHours(8)
         );
 taskRepository.create(
                 new Task()
@@ -110,6 +114,7 @@ taskRepository.create(
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(user)
+                        .setCountHours(7)
         );
 taskRepository.create(
                 new Task()
@@ -118,6 +123,7 @@ taskRepository.create(
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(guest)
+                        .setCountHours(9)
         );
 taskRepository.create(
                 new Task()
@@ -126,6 +132,7 @@ taskRepository.create(
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
                         .setUser(guest)
+                        .setCountHours(45)
         );
 
 

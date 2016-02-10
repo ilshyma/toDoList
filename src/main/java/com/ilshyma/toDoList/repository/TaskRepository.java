@@ -27,29 +27,6 @@ public class TaskRepository {
         return entityManager.find(Task.class, id);
     }
 
-     public List<Task> getTaskListByUser(final User user) {
-        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYUSER, Task.class);
-        query.setParameter("user", user);
-        return query.getResultList();
-    }
-
-    public List<Task> getAllTasks() {
-        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKALL, Task.class);
-        return query.getResultList();
-    }
-
-    public List<Task> getTaskByTitle( final String title) {
-        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYTITLE, Task.class);
-        query.setParameter(1, "%" + title.toUpperCase() + "%");
-        return query.getResultList();
-    }
-    public List<Task> getTaskByTitleAndUser( final String title, User user) {
-        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYTITLEANDUSER, Task.class);
-        query.setParameter(1, "%" + title.toUpperCase() + "%");
-        query.setParameter(2, user);
-        return query.getResultList();
-    }
-
     public Task update(Task task) {
         return entityManager.merge(task);
     }
@@ -73,5 +50,33 @@ public class TaskRepository {
     }
 
 
+    public List<Task> getAllTasks() {
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKALL, Task.class);
+        return query.getResultList();
+    }
+
+    public List<Task> getTaskListByUser(final User user) {
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYUSER, Task.class);
+        query.setParameter("user", user);
+        return query.getResultList();
+    }
+
+    public List<Task> getTaskByTitle( final String title) {
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYTITLE, Task.class);
+        query.setParameter(1, "%" + title.toUpperCase() + "%");
+        return query.getResultList();
+    }
+    public List<Task> getTaskByTitleAndUser( final String title, User user) {
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.TASKBYTITLEANDUSER, Task.class);
+        query.setParameter(1, "%" + title.toUpperCase() + "%");
+        query.setParameter(2, user);
+        return query.getResultList();
+    }
+
+    public int getCountAllTasks(final User user) {
+        TypedQuery<Task> query = entityManager.createNamedQuery(Task.COUNTALLTASKSHOURS, Task.class);
+        query.setParameter("user", user);
+        return Integer.valueOf(String.valueOf(query.getSingleResult()));
+    }
 
 }

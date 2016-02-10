@@ -3,6 +3,8 @@ package com.ilshyma.toDoList.Controllers;
 
 import com.ilshyma.toDoList.Model.Entity.Task;
 import com.ilshyma.toDoList.Model.web.TaskDTO;
+import com.ilshyma.toDoList.Utility.Reward;
+import com.ilshyma.toDoList.Utility.UsdRateServise;
 import com.ilshyma.toDoList.repository.TaskRepository;
 import com.ilshyma.toDoList.repository.UserRepository;
 import org.apache.log4j.Logger;
@@ -42,6 +44,11 @@ public class TaskController {
         ModelAndView model = new ModelAndView("tasks/show");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addObject("tasks", taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName())));
+        LOGGER.info(" add tasks OK ");
+        model.addObject("usdRate", UsdRateServise.GETUSDRATE());
+        LOGGER.info(" add usdRate OK ");
+        model.addObject("salary",  new Reward().getCountAllHours(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))) * UsdRateServise.GETUSDRATE());
+
         return model;
     }
 

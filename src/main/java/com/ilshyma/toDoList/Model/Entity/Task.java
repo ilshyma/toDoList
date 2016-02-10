@@ -20,7 +20,8 @@ import java.util.Set;
         @NamedQuery(name = "getAllTasks", query = "SELECT t FROM Task t order by t.dueDate"),
         @NamedQuery(name = "getTaskByUser", query = "SELECT t FROM Task t where t.user = :user order by t.dueDate"),
         @NamedQuery(name = "getTaskByTitle", query = "SELECT t FROM Task t where upper(t.title) like ?1 order by t.dueDate"),
-        @NamedQuery(name = "getTaskByTitleAndUser", query = "SELECT t FROM Task t where t.user = ?2 and upper(t.title) like ?1  order by t.dueDate")
+        @NamedQuery(name = "getTaskByTitleAndUser", query = "SELECT t FROM Task t where t.user = ?2 and upper(t.title) like ?1  order by t.dueDate"),
+        @NamedQuery(name = "getAllCountHoursTaskByUser", query = "SELECT count(t.countHours) FROM Task t where t.user = :user order by t.dueDate")
 })
 public class Task implements Serializable {
 
@@ -28,6 +29,7 @@ public class Task implements Serializable {
     public static final String TASKBYUSER = "getTaskByUser";
     public static final String TASKBYTITLE = "getTaskByTitle";
     public static final String TASKBYTITLEANDUSER = "getTaskByTitleAndUser";
+    public static final String COUNTALLTASKSHOURS = "getAllCountHoursTaskByUser";
 
 
     @Id
@@ -45,6 +47,9 @@ public class Task implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date dueDate;
+
+
+    private int countHours;
 
     @ManyToOne
     private User user;
@@ -74,6 +79,15 @@ public class Task implements Serializable {
     }
     public Task setTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public int getCountHours() {
+        return countHours;
+    }
+
+    public Task setCountHours(int countHours) {
+        this.countHours = countHours;
         return this;
     }
 

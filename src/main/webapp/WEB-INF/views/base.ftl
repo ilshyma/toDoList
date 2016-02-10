@@ -107,6 +107,15 @@
                         </form>
                     </li>
                     <li class="divider"></li>
+                    <#if salary?has_content && usdRate?has_content>
+
+
+                    <li class="nav-header">
+                        USD Rate: ${usdRate} UAH/USD
+                    </li>
+                    <li class="nav-header"> Rewards for done task: ${salary} UAH</li>
+
+                    </#if>
                 </ul>
             </div>
         </div>
