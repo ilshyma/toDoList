@@ -32,7 +32,7 @@
                     <#list tasks as currentTask>
                     <tr>
                         <td>${currentTask.title}</td>
-                        <td>${currentTask.dueDate}</td>
+                        <td>${currentTask.dueDate?date?string["MM/dd/yyyy"]}</td>
                         <#if currentTask.priority??>
                             <td>${currentTask.priority}</td><#else>
                             <td>null</td></#if>

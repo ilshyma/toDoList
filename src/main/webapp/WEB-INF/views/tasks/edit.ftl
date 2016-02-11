@@ -15,7 +15,8 @@
             </div>
 
             <div class="row">
-                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />" method="POST">
+                <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />"
+                      method="POST">
 
 
                     <!--Title-->
@@ -34,12 +35,15 @@
 
                         <div class="controls">
 
-                            <input type='text' class="form-control" id='dateInput' name="dueDate"
-                                   value="${task.dueDate?string["dd.MM.yyyy"]}" required="required"/>
+                            <input type='text' id='dueDate' name="dueDate"
+                                   value="${task.dueDate?date?string["MM/dd/yyyy"]}" required="required"/>
                             <script type="text/javascript">
                                 $(function () {
-                                    $('#dateInput').datepicker();
-                                    format: 'dd-mm-yyyy'
+                                    $('#dueDate').datepicker(
+                                            { format: 'mm/dd/yyyy',}).on('changeDate', function(e){
+                                                $(this).datepicker('hide');
+                                            });
+
                                 });
                             </script>
                         </div>
@@ -61,23 +65,25 @@
                     <!--Status-->
                     <div class="control-group">
                         <label class="control-label" for="status">Status:</label>
+
                         <div class="controls">
                             <select id="status" path="status" name="status">
                                 <option value="DONE" <#if task.status == "DONE">selected</#if>>Done</option>
-                                <option value="IN_PROGRESS" <#if task.status == "IN_PROGRESS">selected</#if>>In progress</option>
+                                <option value="IN_PROGRESS" <#if task.status == "IN_PROGRESS">selected</#if>>In
+                                    progress
+                                </option>
                             </select>
                         </div>
                     </div>
 
 
-
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save </button>
+                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
 
-                            <a href="/task/show" class="btn btn-default" data-dismiss="modal">
-                                <i class="icon-arrow-left"></i>
-                                Back
-                            </a>
+                        <a href="/task/show" class="btn btn-default" data-dismiss="modal">
+                            <i class="icon-arrow-left"></i>
+                            Back
+                        </a>
 
                     </div>
 

@@ -47,7 +47,6 @@ public class Task implements Serializable {
     private Status status;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dueDate;
 
 

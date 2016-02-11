@@ -13,14 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -72,7 +69,7 @@ public class TaskController {
 
 
     @RequestMapping(value = "/task/{taskIdEdit}/edit", method = RequestMethod.POST)
-    protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO, BindingResult result) throws Exception {
+    protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO, @RequestParam Date dueDate,  BindingResult result) throws Exception {
         LOGGER.info("*edit task method*");
         LOGGER.info("BindingResult" + result.toString());
 

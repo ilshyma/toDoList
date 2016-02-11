@@ -1,8 +1,9 @@
 package com.ilshyma.toDoList.Model.web;
 
+import com.ilshyma.toDoList.Model.Entity.User;
 import com.ilshyma.toDoList.Model.Entity.enums.Priority;
 import com.ilshyma.toDoList.Model.Entity.enums.Status;
-import com.ilshyma.toDoList.Model.Entity.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,8 +16,21 @@ public class TaskDTO{
     private String title;
     private Status status;
     private Priority priority;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dueDate;
     private int countHours;
+    private String dueDate1;
+
+    public String getDueDate1() {
+        return dueDate1;
+    }
+
+    public void setDueDate1(String dueDate1) {
+        this.dueDate1 = dueDate1;
+    }
+
+
+
 
 
     public int getCountHours() {

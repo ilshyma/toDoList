@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +59,8 @@ public class TaskService {
 
     @PostConstruct
     protected void initialize() {
+        SimpleDateFormat ft =
+                new SimpleDateFormat("yyyy.MM.dd");
 
 
         User admin = new User("admin", "admin", "ROLE_ADMIN");

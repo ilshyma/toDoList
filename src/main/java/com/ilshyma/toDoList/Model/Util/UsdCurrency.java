@@ -55,7 +55,7 @@ public class UsdCurrency extends CurrencyExchange {
 
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getCcy().equalsIgnoreCase("USD")){
-                    paymentPerHourRate =  Math.rint(100.00 * (((list.get(i).getBuy() + list.get(i).getSale()) / 2)) / 100.00);
+                    paymentPerHourRate =  Math.rint(1000.0 * (((list.get(i).getBuy() + list.get(i).getSale()) / 2)) / 1000.0);
                     break;
                 }
             }
