@@ -22,6 +22,7 @@
                     <th>Title</th>
                     <th>Due Date</th>
                     <th>Priority</th>
+                    <th>Hours</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -36,7 +37,7 @@
                         <td>${currentTask.title}</td>
                         <td>${currentTask.dueDate}</td>
                         <#if currentTask.priority??><td>${currentTask.priority}</td><#else><td>null</td></#if>
-
+                        <td>${currentTask.countHours}</td>
                         <td>
                             <#if currentTask.status =="DONE">
                             <span class="label label-success">
@@ -44,6 +45,7 @@
                             <span class="label label label-default">
                             </#if>
                         ${currentTask.status}</span></td>
+
                         <td>
                             <a class="btn btn-mini btn-primary" href="/task/${currentTask.id}/edit"><i
                                     class="icon-pencil icon-white"></i></a>

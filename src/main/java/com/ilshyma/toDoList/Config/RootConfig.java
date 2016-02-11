@@ -4,6 +4,7 @@ import com.ilshyma.toDoList.Model.Util.UsdCurrency;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * Created by user on 18.01.2016.
  */
 @EnableWebMvc
-
+@EnableScheduling
 @EnableWebMvcSecurity
 @Configuration
 @ComponentScan({

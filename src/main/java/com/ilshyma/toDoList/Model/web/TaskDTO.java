@@ -16,7 +16,7 @@ public class TaskDTO{
     private String title;
     private Status status;
     private Priority priority;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date dueDate;
     private int countHours;
     private String dueDate1;

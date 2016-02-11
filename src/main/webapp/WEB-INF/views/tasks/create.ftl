@@ -1,6 +1,7 @@
 <#assign c=JspTaglibs["http://java.sun.com/jsp/jstl/core"]>
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
 <#assign s=JspTaglibs["http://www.springframework.org/tags"]>
+<#assign aDateTime = .now>
 
 
 <@layout.extends name="base.ftl">
@@ -14,7 +15,6 @@
                 <h1>Create a new todo</h1>
             </div>
 
-            <div class="row">
                 <form role="form" class="form-horizontal" action="<@c.url value='/task/create' />" method="POST">
 
 
@@ -34,13 +34,25 @@
 
                         <div class="controls">
 
-                            <input type='text' class="form-control" id='dateInput' name="dueDate" required="required"/>
+                            <input type='text' class="form-control" id='dueDate' name="dueDate"  value="${aDateTime?date?string["MM/dd/yyyy"]}" required="required"/>
                             <script type="text/javascript">
                                 $(function () {
-                                    $('#dateInput').datepicker();
-                                    format: 'dd.mm.yyyy'
+                                    $('#dueDate').datepicker(
+                                            { format: 'mm/dd/yyyy', defaultDate: new Date()}).on('changeDate', function(e){
+                                                $(this).datepicker('hide');
+                                            });
+
                                 });
                             </script>
+                        </div>
+                    </div>
+
+                    <!--Hours-->
+                    <div class="control-group">
+                        <label class="control-label" for="countHours">Hours for task:</label>
+
+                        <div class="controls">
+                            <input type="text" id="countHours" name="countHours" value="1" required="required"/>
                         </div>
                     </div>
 
@@ -68,7 +80,6 @@
                     </div>
 
                 </form>
-            </div>
 
 
         </div>

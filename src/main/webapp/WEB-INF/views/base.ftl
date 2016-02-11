@@ -107,18 +107,20 @@
                         </form>
                     </li>
                     <li class="divider"></li>
-                </ul>
+
 
                 <#if usdRateActual?has_content && usdRate?has_content>
 
                     <li class="nav-header">
-                        USD Rate: <span
-                            class="label label-${usdRateActual?then('success','danger')} "> ${usdRate}  </span> UAH/USD
+                        USD Rate: <span class="label label-${usdRateActual?then('success','danger')}"> ${usdRate}  </span> UAH/USD
                     </li>
-
+                    <li class="divider"></li>
                     <li class="nav-header"> Rewards for done task: <span class="label label-default"> ${salary} </span>
                         UAH
                     </li>
+                    <li class="divider"></li>
+                    <li class="nav-header"> Your salary -  </br> 10 USD/hour </li>
+                    <li class="divider"></li>
 
                 </#if>
 

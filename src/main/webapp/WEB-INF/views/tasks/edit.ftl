@@ -14,7 +14,7 @@
                 <h1>Edit task</h1>
             </div>
 
-            <div class="row">
+
                 <form role="form" class="form-horizontal" action="<@c.url value='/task/${task.id}/edit' />"
                       method="POST">
 
@@ -62,6 +62,15 @@
                         </div>
                     </div>
 
+                    <!--Hours-->
+                    <div class="control-group">
+                        <label class="control-label" for="countHours">Hours for task:</label>
+
+                        <div class="controls">
+                            <input type="text" id="countHours" name="countHours" value="${task.countHours}" required="required"/>
+                        </div>
+                    </div>
+
                     <!--Status-->
                     <div class="control-group">
                         <label class="control-label" for="status">Status:</label>
@@ -88,7 +97,6 @@
                     </div>
 
                 </form>
-            </div>
 
 
         </div>

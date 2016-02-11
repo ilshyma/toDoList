@@ -37,12 +37,12 @@ public class UsdCurrency extends CurrencyExchange {
         this.CURRENTRATE = rate;
     }
 
-    public UsdCurrency(){
-       checkUsdCurrency();
+    public UsdCurrency() {
+        checkUsdCurrency();
     }
 
-    @Scheduled(fixedDelay = 108000)
-    public void checkUsdCurrency(){
+    @Scheduled(fixedDelay = 60000)
+    public void checkUsdCurrency() {
         LOGGER.info("update USD rate");
 
         double paymentPerHourRate = 25.50;
@@ -51,19 +51,16 @@ public class UsdCurrency extends CurrencyExchange {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            List<CurrencyExchange> list = mapper.readValue(new URL(CurrencyExchange.getExchangeUrl()), new TypeReference<List<CurrencyExchange>>() {});
+            List<CurrencyExchange> list = mapper.readValue(new URL(CurrencyExchange.getExchangeUrl()), new TypeReference<List<CurrencyExchange>>() {
+            });
 
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getCcy().equalsIgnoreCase("USD")){
-                    paymentPerHourRate =  Math.rint(1000.0 * (((list.get(i).getBuy() + list.get(i).getSale()) / 2)) / 1000.0);
+                if (list.get(i).getCcy().equalsIgnoreCase("USD")) {
+                    paymentPerHourRate = Math.rint(1000.0 * (((list.get(i).getBuy() + list.get(i).getSale()) / 2)) / 1000.0);
                     break;
                 }
             }
-            UsdCurrency.this.setCurrentUsdUahRate(paymentPerHourRate);
-            UsdCurrency.this.setActual(true);
-
-            LOGGER.info("usdCurrency.getCurrentUsdUahRate() = " + UsdCurrency.this.getCurrentUsdUahRate());
-            LOGGER.info("usdCurrency.isActual) = " + UsdCurrency.this.isActual());
+            parseStatus = true;
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
@@ -71,6 +68,15 @@ public class UsdCurrency extends CurrencyExchange {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            UsdCurrency.this.setCurrentUsdUahRate(paymentPerHourRate);
+            UsdCurrency.this.setActual(parseStatus);
+            if (UsdCurrency.this.isActual()) {
+                LOGGER.info("usdCurrency update success");
+            } else {
+                LOGGER.info("usdCurrency update fail");
+            }
+            LOGGER.info("usd currency rate = " + UsdCurrency.this.getCurrentUsdUahRate());
         }
 
     }

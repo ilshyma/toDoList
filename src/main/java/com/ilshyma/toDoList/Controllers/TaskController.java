@@ -48,7 +48,7 @@ public class TaskController {
         model.addObject("tasks", taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName())));
         model.addObject("usdRate", String.valueOf(usdCurrency.getCurrentUsdUahRate()));
         model.addObject("usdRateActual", usdCurrency.isActual());
-        model.addObject("salary",  new Reward().getCountAllDoneHours(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))) * usdCurrency.getCurrentUsdUahRate());
+        model.addObject("salary",  new Reward().getCountAllDoneHours(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))) * usdCurrency.getCurrentUsdUahRate() * 10);
 
         return model;
     }
@@ -72,11 +72,11 @@ public class TaskController {
     protected String editTaskProcessor(@PathVariable final long taskIdEdit, @ModelAttribute TaskDTO taskDTO, @RequestParam Date dueDate,  BindingResult result) throws Exception {
         LOGGER.info("*edit task method*");
         LOGGER.info("BindingResult" + result.toString());
-
         Task task = taskRepository.getTaskById(taskIdEdit);
         task.setTitle(taskDTO.getTitle());
         task.setPriority(taskDTO.getPriority());
         task.setDueDate(taskDTO.getDueDate());
+        task.setCountHours(taskDTO.getCountHours());
         task.setStatus(taskDTO.getStatus());
         taskRepository.save(task);
         return "redirect:/task/show";
@@ -125,9 +125,7 @@ public class TaskController {
     @RequestMapping(value = "/task/create", method = RequestMethod.GET)
     protected ModelAndView createTaskPage() throws Exception {
 
-        return new ModelAndView("/tasks/create", new HashMap<String, Object>() {{
-            put("tasks", taskRepository.getAllTasks());
-        }});
+        return new ModelAndView("/tasks/create", new HashMap<String, Object>() {});
     }
 
     @RequestMapping(value = "/task/create", method = RequestMethod.POST)

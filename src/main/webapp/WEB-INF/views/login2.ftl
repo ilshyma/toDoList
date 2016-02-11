@@ -20,7 +20,7 @@
 
 <@layout.block name="css_head">
     <!-- Bootstrap Styles-->
-    <link href="<@c.url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"/>
+    <link href="<@c.url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 
     <style type="text/css">
@@ -90,9 +90,10 @@
 
         <input type="text" name="username" class="input-block-level" placeholder="User Name" required autofocus>
         <input type="password" name="password"  class="input-block-level" placeholder="Password" required>
-        <label class="checkbox">
+        <!--<label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
         </label>
+        -->
         <button class="btn btn-large btn-primary" type="submit">Sign in</button>
     </form>
 
