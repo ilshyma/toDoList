@@ -71,8 +71,9 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-
-                    <li><a href="/user/create">Create users (only for admin)</a></li>
+                    <@security.authorize access="hasRole('ROLE_ADMIN')">
+                        <li><a href="/user/create">Create users</a></li>
+                    </@security.authorize>
                     <li class="divider"></li>
                     <li><a href="/login?logout">Sign out</a></li>
                 </ul>
@@ -109,20 +110,23 @@
                     <li class="divider"></li>
 
 
-                <#if usdRateActual?has_content && usdRate?has_content>
+                    <#if usdRateActual?has_content && usdRate?has_content>
 
-                    <li class="nav-header">
-                        USD Rate: <span class="label label-${usdRateActual?then('success','danger')}"> ${usdRate}  </span> UAH/USD
-                    </li>
-                    <li class="divider"></li>
-                    <li class="nav-header"> Rewards for done task: <span class="label label-default"> ${salary} </span>
-                        UAH
-                    </li>
-                    <li class="divider"></li>
-                    <li class="nav-header"> Your salary -  </br> 10 USD/hour </li>
-                    <li class="divider"></li>
+                        <li class="nav-header">
+                            USD Rate: <span
+                                class="label label-${usdRateActual?then('success','danger')}"> ${usdRate}  </span>
+                            UAH/USD
+                        </li>
+                        <li class="divider"></li>
+                        <li class="nav-header"> Rewards for done task: <span
+                                class="label label-default"> ${salary} </span>
+                            UAH
+                        </li>
+                        <li class="divider"></li>
+                        <li class="nav-header"> Your salary -  </br> 10 USD/hour</li>
+                        <li class="divider"></li>
 
-                </#if>
+                    </#if>
 
                 </ul>
             </div>

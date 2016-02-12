@@ -1,8 +1,11 @@
 package com.ilshyma.toDoList.Model.Util;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by user on 10.02.2016.
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class CurrencyExchange {
 
     private static final String EXCHANGEURL = "https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11";

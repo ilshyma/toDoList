@@ -5,8 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by star on 10.02.2016.
  */
-@Component
+@Service
 public class UsdCurrency extends CurrencyExchange {
     private static final Logger LOGGER = Logger.getLogger(UsdCurrency.class);
     private static double CURRENTRATE;
@@ -40,8 +41,8 @@ public class UsdCurrency extends CurrencyExchange {
     public UsdCurrency() {
         checkUsdCurrency();
     }
-
-    @Scheduled(fixedDelay = 60000)
+    @Async
+    @Scheduled(fixedDelay = 900000)
     public void checkUsdCurrency() {
         LOGGER.info("update USD rate");
 

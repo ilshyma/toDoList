@@ -35,6 +35,9 @@ public class TaskController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    Reward reward;
+
 
 
 //----------Show page----------------
@@ -48,7 +51,8 @@ public class TaskController {
         model.addObject("tasks", taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName())));
         model.addObject("usdRate", String.valueOf(usdCurrency.getCurrentUsdUahRate()));
         model.addObject("usdRateActual", usdCurrency.isActual());
-        model.addObject("salary",  new Reward().getCountAllDoneHours(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))) * usdCurrency.getCurrentUsdUahRate() * 10);
+        model.addObject("salary",  reward.getSalarySum(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))));
+        //model.addObject("salary",  new Reward().getCountAllDoneHours(taskRepository.getTaskListByUser(userRepository.findByUserName(auth.getName()))) * usdCurrency.getCurrentUsdUahRate() * 10);
 
         return model;
     }

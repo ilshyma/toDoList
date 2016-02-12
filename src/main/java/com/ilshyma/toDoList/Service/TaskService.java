@@ -116,7 +116,7 @@ public class TaskService {
                         .setStatus(Status.DONE)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
-                        .setUser(user)
+                        .setUser(admin)
                         .setCountHours(7)
         );
         taskRepository.create(
@@ -125,7 +125,7 @@ public class TaskService {
                         .setStatus(Status.DONE)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
-                        .setUser(guest)
+                        .setUser(admin)
                         .setCountHours(9)
         );
         taskRepository.create(
@@ -134,7 +134,7 @@ public class TaskService {
                         .setStatus(Status.DONE)
                         .setPriority(Priority.MEDIUM)
                         .setDueDate(new Date())
-                        .setUser(guest)
+                        .setUser(user)
                         .setCountHours(45)
         );
 
